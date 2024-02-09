@@ -116,7 +116,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     };
 
                     // Send the Ajax POST request
-                    fetch('{{ env('BASE_URL') }}api/autentikasi/masuk', {
+                    fetch('http://127.0.0.1:8000/api/autentikasi/masuk', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

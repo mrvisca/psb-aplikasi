@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,6 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/autentikasi/login',[AutentikasiController::class, 'loginView'])->name('login');
+Route::get('/otentikasi/login',[AutentikasiController::class, 'loginView'])->name('login');
 Route::get('/aplikasi/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+Route::get('/aplikasi/master-guru',[MasterguruController::class, 'index'])->name('masterguru');

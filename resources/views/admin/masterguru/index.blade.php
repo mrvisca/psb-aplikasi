@@ -427,23 +427,23 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-1" class="form-label">NIP</label>
-                                <input type="number" class="form-control form-nip" placeholder="NIP">
+                                <input type="number" class="form-control form-nip" placeholder="NIP" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control form-name" placeholder="Sukaryo Sulaksono">
+                                <input type="text" class="form-control form-name" placeholder="Sukaryo Sulaksono" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-3" class="form-label">Email</label>
-                                <input id="modal-form-3" type="text" class="form-control form-email" placeholder="karyo@mail.com">
+                                <input type="text" class="form-control form-email" placeholder="karyo@mail.com" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-4" class="form-label">Password</label>
-                                <input id="modal-form-4" type="password" class="form-control form-password" placeholder="********">
+                                <input type="password" class="form-control form-password" placeholder="********" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
-                                <select id="modal-form-6" class="form-select form-jenkel">
+                                <select class="form-select form-jenkel" required>
                                     <option selected disabled> --- Pilih Jenis Kelamin --- </option>
                                     <option value="laki-laki"> Laki-laki </option>
                                     <option value="perempuan"> Perempuan </option>
@@ -451,17 +451,17 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-6" class="form-label">Status Pegawai</label>
-                                <select id="modal-form-6" class="form-select form-role-id">
+                                <select class="form-select form-role-id" required>
                                     <option selected disabled> --- Pilih Status Pegawai --- </option>
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-5" class="form-label">Jabatan</label>
-                                <input id="modal-form-5" type="text" class="form-control form-jabatan" placeholder="Guru Matematika">
+                                <input type="text" class="form-control form-jabatan" placeholder="Guru Matematika" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-5" class="form-label">Nomer Telpon</label>
-                                <input id="modal-form-5" type="text" class="form-control form-telpon" placeholder="62821********">
+                                <input type="number" class="form-control form-telpon" placeholder="62821********" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="fileInput" class="form-label">Photo Profil</label>
@@ -469,10 +469,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-6" class="form-label">Status Akun</label>
-                                <select id="modal-form-6" class="form-select form-status">
+                                <select class="form-select form-status" required>
                                     <option selected disabled> --- Pilih Status Akun --- </option>
-                                    <option value="true"> Aktif </option>
-                                    <option value="false"> Nonaktif </option>
+                                    <option value="1"> Aktif </option>
+                                    <option value="0"> Nonaktif </option>
                                 </select>
                             </div>
                         </div>
@@ -505,6 +505,128 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Notification Gagal Tambah Guru Content -->
+            <!-- BEGIN: Modal Content -->
+            <div id="header-update-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- BEGIN: Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="font-medium text-base mr-auto">
+                                Form Edit Data Guru
+                            </h2>
+                            <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                        </div>
+                        <!-- END: Modal Header -->
+                        <!-- BEGIN: Modal Body -->
+                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-1" class="form-label">NIP</label>
+                                <input type="hidden" class="form-control update-id" placeholder="NIP">
+                                <input type="number" class="form-control update-nip" placeholder="NIP">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-2" class="form-label">Nama</label>
+                                <input type="text" class="form-control update-nama" placeholder="Suryodikaryo">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-3" class="form-label">Jenis Kelamin</label>
+                                <select class="form-select update-jenkel">
+                                    <option selected disabled> --- Pilih Jenis Kelamin --- </option>
+                                    <option value="laki-laki"> Laki-laki </option>
+                                    <option value="perempuan"> Perempuan </option>
+                                </select>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-2" class="form-label">Status Pegawai</label>
+                                <input type="text" class="form-control update-role-id" placeholder="Suryodikaryo">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-4" class="form-label">Jabatan</label>
+                                <input type="text" class="form-control update-jabatan" placeholder="Guru Matematika">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-5" class="form-label">Telpon</label>
+                                <input type="number" class="form-control update-telpon" placeholder="62821********">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-6" class="form-label">Status</label>
+                                <select id="modal-form-6" class="form-select update-status">
+                                    <option selected disabled> --- Pilih Status Akun --- </option>
+                                    <option value="1"> Aktif </option>
+                                    <option value="0"> Nonaktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- END: Modal Body -->
+                        <!-- BEGIN: Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Batal</button>
+                            <button type="button" class="btn btn-primary w-20 btn-update">Update</button>
+                        </div>
+                        <!-- END: Modal Footer -->
+                    </div>
+                </div>
+            </div>
+            <!-- END: Modal Content -->
+            <!-- BEGIN: Notification Sukses Update Guru Content -->
+            <div id="success-update-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="check-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Berhasil update data guru!</div>
+                    <div class="text-slate-500 mt-1 update-sukses"></div>
+                </div>
+            </div>
+            <!-- END: Notification Sukses Update Guru Content -->
+            <!-- BEGIN: Notification Gagal Update Guru Content -->
+            <div id="failed-update-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="x-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Gagal update data guru!</div>
+                    <div class="text-slate-500 mt-1 update-gagal"></div>
+                </div>
+            </div>
+            <!-- END: Notification Gagal Update Guru Content -->
+            <!-- BEGIN: Modal Content -->
+            <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <div class="p-5 text-center">
+                                <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i> 
+                                <div class="text-3xl mt-5">Apa kamu yakin?</div>
+                                <div class="text-slate-500 mt-2">
+                                    Apa kamu yakin akan menghapus data guru ini? 
+                                    <br>
+                                    Data yang terhapus tidak bisa dikembalikan.
+                                </div>
+                            </div>
+                            <div class="px-5 pb-8 text-center">
+                                <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                                <button type="button" class="btn btn-danger w-24 btn-iya">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Modal Content -->
+            <!-- BEGIN: Notification Sukses Hapus Guru Content -->
+            <div id="success-hapus-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="check-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Berhasil hapus data guru!</div>
+                    <div class="text-slate-500 mt-1 hapus-sukses"></div>
+                </div>
+            </div>
+            <!-- END: Notification Sukses Hapus Guru Content -->
+            <!-- BEGIN: Notification Gagal Hapus Guru Content -->
+            <div id="failed-hapus-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="x-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Gagal hapus data guru!</div>
+                    <div class="text-slate-500 mt-1 hapus-gagal"></div>
+                </div>
+            </div>
+            <!-- END: Notification Gagal Hapus Guru Content -->
         </div>
         
         <!-- BEGIN: JS Assets-->
@@ -679,7 +801,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         formData.append('jabatan', jabatan);
                         formData.append('telpon', telpon);
                         formData.append('status', status);
-                        formData.append('foto', '');
+                        formData.append('photo', '');
 
                         // Kirim permintaan pembaruan produk ke API
                         jQuery.ajax({
@@ -752,21 +874,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         { data: 'jenkel', className: 'text-center' },
                         { data: 'role_name', className: 'text-center' },
                         { data: 'jabatan', className: 'text-center' },
-                        { data: 'status', className: 'text-center' },
+                        { data: 'setatus', className: 'text-center' },
                         {
                             data: null,
                             render: function (data, type, row) {
 
-                                var status = '';
-                                if(data.is_active == 'Aktif')
-                                {
-                                    status = true;
-                                }else{
-                                    status = false;
-                                }
-
                                 // Create action buttons
-                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '"><i data-feather="eye" class="w-4 h-4 mr-1"></i></button>';
+                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-user_name="' + data.user_name + '" data-nip="' + data.nip + '" data-jenkel="' + data.jenkel + '" data-role_name="' + data.role_name + '" data-jabatan="' + data.jabatan + '" data-status="' + data.status + '" data-telpon="' + data.telpon + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
                                 var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
 
                                 // Combine the buttons
@@ -780,6 +894,158 @@ License: You must have a valid license purchased only from themeforest(the above
                     }
                 });
 
+                // Passing data list row ke dalam modal update
+                jQuery('#data-table').on('click', '.btn-edit', function() {
+                    // Show the modal
+                    const el = document.querySelector("#header-update-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+
+                    var id = jQuery(this).attr("data-id");
+                    var user_name = jQuery(this).attr("data-user_name");
+                    var nip = jQuery(this).attr("data-nip");
+                    var jenkel = jQuery(this).attr("data-jenkel");
+                    var role_name = jQuery(this).attr("data-role_name");
+                    var jabatan = jQuery(this).attr("data-jabatan");
+                    var status = jQuery(this).attr("data-status");
+                    var telpon = jQuery(this).attr("data-telpon");
+
+                    // Handle edit action
+                    jQuery('.update-id').val(id);
+                    jQuery('.update-nip').val(nip);
+                    jQuery('.update-nama').val(user_name).prop('disabled',true);
+                    jQuery('.update-jenkel').val(jenkel);
+                    jQuery('.update-role-id').val(role_name).prop('disabled',true);
+                    jQuery('.update-jabatan').val(jabatan);
+                    jQuery('.update-status').val(status);
+                    jQuery('.update-telpon').val(telpon);
+                });
+
+                // Fungsi button update data
+                jQuery('.btn-update').click(function() {
+                    // Ajax update
+                    var id = jQuery('.update-id').val();
+                    var name = jQuery('.update-nama').val();
+                    var nip = jQuery('.update-nip').val();
+                    var jenkel = jQuery('.update-jenkel').val();
+                    var jabatan = jQuery('.update-jabatan').val();
+                    var status = jQuery('.update-status').val();
+                    var telpon = jQuery('.update-telpon').val();
+
+                    // Kirim permintaan pembaruan produk ke API
+                    jQuery.ajax({
+                        url: '{{ env('BASE_URL') }}api/master-guru/update-data/' + id,
+                        type: "PUT",
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                        },
+                        data: {
+                            name: name,
+                            nip: nip,
+                            jenkel: jenkel,
+                            jabatan: jabatan,
+                            status: status,
+                            telpon: telpon,
+                        },
+                        success: function(response) {
+                            // Show the modal
+                            jQuery('.update-sukses').text(response.message);
+                            Toastify({
+                                node: $("#success-update-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 3000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000); // 3000 milliseconds = 3 seconds
+                        },
+                        error: function(xhr, status, error) {
+                            // Show the modal
+                            jQuery('.update-gagal').text(response.message);
+                            Toastify({
+                                node: $("#failed-update-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 5000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 5000); // 3000 milliseconds = 3 seconds
+                        }
+                    });
+                });
+
+                // Fungsi Tombol hapus
+                jQuery('#data-table').on('click', '.btn-delete', function() {
+                    var id = jQuery(this).attr("data-id");
+
+                    // Show the modal
+                    const el = document.querySelector("#delete-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+
+                    jQuery('.btn-iya').click(function() {
+                        // Ajax delete Api
+                        jQuery.ajax({
+                            url: '{{ env('BASE_URL') }}api/master-guru/hapus-data/' + id,
+                            type: 'DELETE',
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            },
+                            success: function(response) {
+                                // Show the modal
+                                jQuery('.hapus-sukses').text(response.message);
+                                Toastify({
+                                    node: $("#success-hapus-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 3000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000); // 3000 milliseconds = 3 seconds
+                            },
+                            error: function(xhr, status, error) {
+                                // Show the modal
+                                jQuery('.hapus-gagal').text(error);
+                                Toastify({
+                                    node: $("#failed-hapus-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 5000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 5000); // 3000 milliseconds = 3 seconds
+                            }
+                        });
+                    });
+                });
 
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

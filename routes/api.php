@@ -29,5 +29,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post("/list", [MasterguruController::class, 'listGuru']);
         Route::post("/tambah-data", [MasterguruController::class, 'addMaster']);
         Route::get("/data-support/role", [MasterguruController::class, 'supportRole']);
+        Route::put("/update-data/{id}", [MasterguruController::class, 'updateGuru']);
+        Route::delete("/hapus-data/{id}", [MasterguruController::class, 'hapus']);
     });
 });

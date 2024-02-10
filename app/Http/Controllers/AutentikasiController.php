@@ -27,7 +27,7 @@ class AutentikasiController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->where('is_active',1)->first();
 
         if ($user == null) {
             return response([

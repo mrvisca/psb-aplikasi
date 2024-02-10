@@ -57,7 +57,9 @@ class MasterguruController extends Controller
             $item['jenkel'] = $m->jenkel;
             $item['role_name'] = $m->user->role->name ?? '';
             $item['jabatan'] = $m->jabatan;
+            $item['setatus'] = $m->status == 1 ? 'Aktif' : 'Nonaktif';
             $item['status'] = $m->status;
+            $item['telpon'] = $m->telpon;
             $data[] = $item;
         }
 
@@ -135,7 +137,7 @@ class MasterguruController extends Controller
                 'email' => $request->email,
                 'name' => $request->name,
             ];
-            Mail::send('fmail.register', ['nama' => $request->name, 'email' => $request->email, 'password' => $request->pasword, 'telpon' => $request->telpon, 'jabatan' => $request->jabatan], function ($m) use ($user) {
+            Mail::send('fmail.gururegister', ['nama' => $request->name, 'email' => $request->email, 'password' => $request->pasword, 'telpon' => $request->telpon, 'jabatan' => $request->jabatan], function ($m) use ($user) {
                 $m->from('dodo@mrvisca.tech', 'Mr Visca');
                 $m->to($user['email'], $user['name'])->subject('Email pendaftaran akun!');
             });
@@ -196,5 +198,71 @@ class MasterguruController extends Controller
         return response()->json([
             'data' => $data,
         ],200);
+    }
+
+    public function updateGuru(Request $request, $id)
+    {
+        $find = MasterGuru::where('id',$id)->first();
+        if(!$find)
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Update data gagal, data guru tidak ditemukan',
+            ],400);
+        }else{
+            // Update status user login
+            $user = User::where('id',$find->user_id)->first();
+            if($user)
+            {
+                $user->is_active = $request->status;
+                $user->save();
+
+                // Update data master guru
+                $find->nip = $request->nip;
+                $find->jenkel = $request->jenkel;
+                $find->jabatan = $request->jabatan;
+                $find->telpon = $request->telpon;
+                $find->status = $request->status;
+                $find->save(); 
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Berhasil update data guru',
+                ],201);
+            }else{
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Terjadi kesalahan saat update data guru',
+                ],400);
+            }
+        }
+    }
+
+    public function hapus($id)
+    {
+        $find = MasterGuru::where('id',$id)->first();
+        if(!$find)
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal hapus data guru, data tidak ditemukan',
+            ],400);
+        }else{
+            $user = User::where('id',$find->user_id)->delete();
+            $hapus_guru = MasterGuru::where('id',$find->id)->delete();
+
+            if($user && $hapus_guru)
+            {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Berhasil menghapus data guru',
+                ],201);
+            }else{
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Terjadi kesalahan saat menghapus master guru',
+                ],400);
+            }
+        }
     }
 }

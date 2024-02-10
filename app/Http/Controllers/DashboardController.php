@@ -13,6 +13,11 @@ class DashboardController extends Controller
         return view('admin.dashboard.index');
     }
 
+    public function pageConstruction()
+    {
+        return view('admin.construction.index');
+    }
+
     public function getProfile()
     {
         // Cek Role

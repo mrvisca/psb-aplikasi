@@ -22,4 +22,5 @@ Route::get('/', function () {
 
 Route::get('/otentikasi/login',[AutentikasiController::class, 'loginView'])->name('login');
 Route::get('/aplikasi/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+Route::get('/aplikasi/comingsoon-page',[DashboardController::class, 'pageConstruction'])->name('comingsoon');
 Route::get('/aplikasi/master-guru',[MasterguruController::class, 'index'])->name('masterguru');

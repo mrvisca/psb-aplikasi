@@ -48,25 +48,25 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu">
+                        <a href="{{ route('comingsoon') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="users"></i> </div>
                             <div class="menu__title"> Master Siswa </div>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu">
+                        <a href="{{ route('comingsoon') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="menu__title"> Master Jurusan </div>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu">
+                        <a href="{{ route('comingsoon') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="menu__title"> Data Tahun Ajar </div>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu">
+                        <a href="{{ route('comingsoon') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="list"></i> </div>
                             <div class="menu__title"> Data Kriteria </div>
                         </a>
@@ -78,37 +78,37 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                         <ul class="">
                             <li>
-                                <a href="#" class="menu">
+                                <a href="{{ route('comingsoon') }}" class="menu">
                                     <div class="menu__icon"> <i data-lucide="book"></i> </div>
                                     <div class="menu__title"> Rapor </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu">
+                                <a href="{{ route('comingsoon') }}" class="menu">
                                     <div class="menu__icon"> <i data-lucide="clipboard"></i> </div>
                                     <div class="menu__title"> Presensi </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu">
+                                <a href="{{ route('comingsoon') }}" class="menu">
                                     <div class="menu__icon"> <i data-lucide="thumbs-up"></i> </div>
                                     <div class="menu__title"> Sikap Siswa </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu">
+                                <a href="{{ route('comingsoon') }}" class="menu">
                                     <div class="menu__icon"> <i data-lucide="activity"></i> </div>
                                     <div class="menu__title"> Prestasi </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu">
+                                <a href="{{ route('comingsoon') }}" class="menu">
                                     <div class="menu__icon"> <i data-lucide="user-x"></i> </div>
                                     <div class="menu__title"> Keterlambatan </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="menu">
+                                <a href="{{ route('comingsoon') }}" class="menu">
                                     <div class="menu__icon"> <i data-lucide="book"></i> </div>
                                     <div class="menu__title"> Hafalan Qur'an </div>
                                 </a>
@@ -116,7 +116,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </ul>
                     </li>
                     <li>
-                        <a href="side-menu-light-chat.html" class="menu">
+                        <a href="{{ route('comingsoon') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="award"></i> </div>
                             <div class="menu__title"> Penilaian (Ranking) </div>
                         </a>
@@ -147,25 +147,25 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="side-menu">
+                        <a href="{{ route('comingsoon') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
                             <div class="side-menu__title"> Master Siswa </div>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="side-menu">
+                        <a href="{{ route('comingsoon') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="side-menu__title"> Master Jurusan </div>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="side-menu">
+                        <a href="{{ route('comingsoon') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="side-menu__title"> Data Tahun Ajar </div>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="side-menu">
+                        <a href="{{ route('comingsoon') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
                             <div class="side-menu__title"> Data Kriteria </div>
                         </a>
@@ -180,37 +180,37 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                         <ul class="">
                             <li>
-                                <a href="#" class="side-menu">
+                                <a href="{{ route('comingsoon') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="book"></i> </div>
                                     <div class="side-menu__title"> Rapor </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="side-menu">
+                                <a href="{{ route('comingsoon') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="clipboard"></i> </div>
                                     <div class="side-menu__title"> Presensi </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="side-menu">
+                                <a href="{{ route('comingsoon') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="thumbs-up"></i> </div>
                                     <div class="side-menu__title"> Sikap Siswa </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="side-menu">
+                                <a href="{{ route('comingsoon') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                                     <div class="side-menu__title"> Prestasi </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="side-menu">
+                                <a href="{{ route('comingsoon') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
                                     <div class="side-menu__title"> Keterlambatan </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="side-menu">
+                                <a href="{{ route('comingsoon') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
                                     <div class="side-menu__title"> Hafalan Qur'an </div>
                                 </a>
@@ -218,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </ul>
                     </li>
                     <li>
-                        <a href="side-menu-light-chat.html" class="side-menu">
+                        <a href="{{ route('comingsoon') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="award"></i> </div>
                             <div class="side-menu__title"> Penilaian (Ranking) </div>
                         </a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get("/home", [DashboardController::class, 'getProfile']);
     });
 
+    Route::prefix('master-guru')->group(function () {
+        Route::post("/list", [MasterguruController::class, 'listGuru']);
+        Route::post("/tambah-data", [MasterguruController::class, 'addMaster']);
+        Route::get("/data-support/role", [MasterguruController::class, 'supportRole']);
+    });
 });

@@ -20,6 +20,19 @@ License: You must have a valid license purchased only from themeforest(the above
         <title>Master Guru - Aplikasi PSB</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ asset('template/dist/css/app.css') }}" />
+        <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+        <style>
+            /* Menyesuaikan lebar dropdown "Show entries" */
+            .dataTables_length {
+                width: 200px; /* Sesuaikan lebar sesuai kebutuhan Anda */
+            }
+
+            /* Menyesuaikan lebar opsi dropdown */
+            .dataTables_length select {
+                width: 30%; /* Menggunakan lebar penuh */
+                box-sizing: border-box; /* Menambahkan padding dan border ke dalam lebar */
+            }
+        </style>
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -353,10 +366,10 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Top Bar -->
                 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                     <h2 class="text-lg font-medium mr-auto">
-                        Tabulator
+                        List Master Guru
                     </h2>
                     <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-                        <button class="btn btn-primary shadow-md mr-2">Add New Product</button>
+                        <button class="btn btn-primary shadow-md mr-2 btn-tambah">Tambah Data</button>
                         <div class="dropdown ml-auto sm:ml-0">
                             <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
@@ -364,10 +377,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="dropdown-menu w-40">
                                 <ul class="dropdown-content">
                                     <li>
-                                        <a href="" class="dropdown-item"> <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i> New Category </a>
+                                        <a href="" class="dropdown-item"> <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i> Import Data </a>
                                     </li>
                                     <li>
-                                        <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> New Group </a>
+                                        <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export Excel </a>
                                     </li>
                                 </ul>
                             </div>
@@ -376,72 +389,130 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- BEGIN: HTML Table Data -->
                 <div class="intro-y box p-5 mt-5">
-                    <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
-                        <form id="tabulator-html-filter-form" class="xl:flex sm:mr-auto" >
-                            <div class="sm:flex items-center sm:mr-4">
-                                <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Field</label>
-                                <select id="tabulator-html-filter-field" class="form-select w-full sm:w-32 2xl:w-full mt-2 sm:mt-0 sm:w-auto">
-                                    <option value="name">Name</option>
-                                    <option value="category">Category</option>
-                                    <option value="remaining_stock">Remaining Stock</option>
-                                </select>
-                            </div>
-                            <div class="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
-                                <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Type</label>
-                                <select id="tabulator-html-filter-type" class="form-select w-full mt-2 sm:mt-0 sm:w-auto" >
-                                    <option value="like" selected>like</option>
-                                    <option value="=">=</option>
-                                    <option value="<">&lt;</option>
-                                    <option value="<=">&lt;=</option>
-                                    <option value=">">></option>
-                                    <option value=">=">>=</option>
-                                    <option value="!=">!=</option>
-                                </select>
-                            </div>
-                            <div class="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
-                                <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Value</label>
-                                <input id="tabulator-html-filter-value" type="text" class="form-control sm:w-40 2xl:w-full mt-2 sm:mt-0" placeholder="Search...">
-                            </div>
-                            <div class="mt-2 xl:mt-0">
-                                <button id="tabulator-html-filter-go" type="button" class="btn btn-primary w-full sm:w-16" >Go</button>
-                                <button id="tabulator-html-filter-reset" type="button" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" >Reset</button>
-                            </div>
-                        </form>
-                        <div class="flex mt-5 sm:mt-0">
-                            <button id="tabulator-print" class="btn btn-outline-secondary w-1/2 sm:w-auto mr-2"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print </button>
-                            <div class="dropdown w-1/2 sm:w-auto">
-                                <button class="dropdown-toggle btn btn-outline-secondary w-full sm:w-auto" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export <i data-lucide="chevron-down" class="w-4 h-4 ml-auto sm:ml-2"></i> </button>
-                                <div class="dropdown-menu w-40">
-                                    <ul class="dropdown-content">
-                                        <li>
-                                            <a id="tabulator-export-csv" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export CSV </a>
-                                        </li>
-                                        <li>
-                                            <a id="tabulator-export-json" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export JSON </a>
-                                        </li>
-                                        <li>
-                                            <a id="tabulator-export-xlsx" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export XLSX </a>
-                                        </li>
-                                        <li>
-                                            <a id="tabulator-export-html" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export HTML </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="overflow-x-auto scrollbar-hidden">
-                        <div id="tabulator" class="mt-5 table-report table-report--tabulator"></div>
+                        <table id="data-table" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Status</th>
+                                    <th>Jabatan</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- END: HTML Table Data -->
             </div>
             <!-- END: Content -->
+            <!-- BEGIN: Modal Content -->
+            <div id="header-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- BEGIN: Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="font-medium text-base mr-auto">
+                                Form Buat Data Guru
+                            </h2>
+                            <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                        </div>
+                        <!-- END: Modal Header -->
+                        <!-- BEGIN: Modal Body -->
+                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-1" class="form-label">NIP</label>
+                                <input type="number" class="form-control form-nip" placeholder="NIP">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-2" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control form-name" placeholder="Sukaryo Sulaksono">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-3" class="form-label">Email</label>
+                                <input id="modal-form-3" type="text" class="form-control form-email" placeholder="karyo@mail.com">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-4" class="form-label">Password</label>
+                                <input id="modal-form-4" type="password" class="form-control form-password" placeholder="********">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
+                                <select id="modal-form-6" class="form-select form-jenkel">
+                                    <option selected disabled> --- Pilih Jenis Kelamin --- </option>
+                                    <option value="laki-laki"> Laki-laki </option>
+                                    <option value="perempuan"> Perempuan </option>
+                                </select>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-6" class="form-label">Status Pegawai</label>
+                                <select id="modal-form-6" class="form-select form-role-id">
+                                    <option selected disabled> --- Pilih Status Pegawai --- </option>
+                                </select>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-5" class="form-label">Jabatan</label>
+                                <input id="modal-form-5" type="text" class="form-control form-jabatan" placeholder="Guru Matematika">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-5" class="form-label">Nomer Telpon</label>
+                                <input id="modal-form-5" type="text" class="form-control form-telpon" placeholder="62821********">
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="fileInput" class="form-label">Photo Profil</label>
+                                <input type="file" class="form-control" id="fileInput" required>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-6" class="form-label">Status Akun</label>
+                                <select id="modal-form-6" class="form-select form-status">
+                                    <option selected disabled> --- Pilih Status Akun --- </option>
+                                    <option value="true"> Aktif </option>
+                                    <option value="false"> Nonaktif </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- END: Modal Body -->
+                        <!-- BEGIN: Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Batalkan</button>
+                            <button type="button" class="btn btn-primary w-20 btn-simpan">Simpan</button>
+                        </div>
+                        <!-- END: Modal Footer -->
+                    </div>
+                </div>
+            </div>
+            <!-- END: Modal Content -->
+            <!-- BEGIN: Notification Sukses Tambah Guru Content -->
+            <div id="success-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="check-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Berhasil membuat data guru baru!</div>
+                    <div class="text-slate-500 mt-1 pesan-sukses"></div>
+                </div>
+            </div>
+            <!-- END: Notification Sukses Tambah Guru Content -->
+            <!-- BEGIN: Notification Gagal Tambah Guru Content -->
+            <div id="failed-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="x-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Gagal membuat data guru baru!</div>
+                    <div class="text-slate-500 mt-1 pesan-gagal"></div>
+                </div>
+            </div>
+            <!-- END: Notification Gagal Tambah Guru Content -->
         </div>
         
         <!-- BEGIN: JS Assets-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.1/dist/feather.min.js"></script>
         <script src="{{ asset('template/dist/js/app.js') }}"></script>
+        <script src="{{ asset('template/src/toastify.js') }}"></script>
         <script>
             // cek package jquery
             jQuery(document).ready(function(){
@@ -490,6 +561,225 @@ License: You must have a valid license purchased only from themeforest(the above
                 }).catch(error => {
                     console.error('Error:', error);
                 });
+
+                jQuery('.btn-tambah').click(function() {
+                    // Show Modal
+                    const el = document.querySelector("#header-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+                });
+
+                // Panggil data support role
+                var url = 'http://127.0.0.1:8000/api/master-guru/data-support/role';
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                }).then(response => response.json()).then(data => {
+                    var select = jQuery('.form-role-id');
+
+                    // Iterasi melalui data dan membuat objek untuk setiap entri
+                    jQuery.each(data, function(index, item) {
+                        for (let i = 0; i < item.length; i++) {
+                            select.append('<option value="' + item[i].id + '">' + item[i].name + '</option>');
+                        }
+                    });
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+
+                jQuery('.btn-simpan').click(function() {
+                    // Show the modal
+                    event.preventDefault(); // Prevent default form submission
+
+                    // Get form data
+                    var nip = jQuery(".form-nip").val();
+                    var name = jQuery(".form-name").val();
+                    var email = jQuery(".form-email").val();
+                    var password = jQuery(".form-password").val();
+                    var jenkel = jQuery(".form-jenkel").val();
+                    var role_id = jQuery(".form-role-id").val();
+                    var jabatan = jQuery(".form-jabatan").val();
+                    var telpon = jQuery(".form-telpon").val();
+                    var status = jQuery(".form-status").val();
+                    var inp = jQuery('#fileInput')[0];
+                    var foto = inp.files[0];
+
+                    if (foto) {
+                        var formData = new FormData();
+                        formData.append('nip', nip);
+                        formData.append('name', name);
+                        formData.append('email', email);
+                        formData.append('password', password);
+                        formData.append('jenkel', jenkel);
+                        formData.append('role_id', role_id);
+                        formData.append('jabatan', jabatan);
+                        formData.append('telpon', telpon);
+                        formData.append('status', status);
+                        formData.append('photo', foto);
+
+                        // Kirim permintaan pembaruan produk ke API
+                        jQuery.ajax({
+                            url: 'http://127.0.0.1:8000/api/master-guru/tambah-data',
+                            type: 'POST',
+                            headers: {
+                                "Authorization": "Bearer " + token
+                            },
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                // Show the modal
+                                jQuery('.pesan-sukses').text(response.message);
+                                Toastify({
+                                    node: $("#success-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 3000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000); // 3000 milliseconds = 3 seconds
+                            },
+                            error: function(xhr, status, error) {
+                                // Show the modal
+                                jQuery('.pesan-gagal').text(error);
+                                Toastify({
+                                    node: $("#failed-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 5000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 5000); // 3000 milliseconds = 3 seconds
+                            }
+                        });
+                    }else{
+                        var formData = new FormData();
+                        formData.append('nip', nip);
+                        formData.append('name', name);
+                        formData.append('email', email);
+                        formData.append('password', password);
+                        formData.append('jenkel', jenkel);
+                        formData.append('role_id', role_id);
+                        formData.append('jabatan', jabatan);
+                        formData.append('telpon', telpon);
+                        formData.append('status', status);
+                        formData.append('foto', '');
+
+                        // Kirim permintaan pembaruan produk ke API
+                        jQuery.ajax({
+                            url: 'http://127.0.0.1:8000/api/master-guru/tambah-data',
+                            type: 'POST',
+                            headers: {
+                                "Authorization": "Bearer " + token
+                            },
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                // Show the modal
+                                jQuery('.pesan-sukses').text(response.message);
+                                Toastify({
+                                    node: $("#success-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 3000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000); // 3000 milliseconds = 3 seconds
+                            },
+                            error: function(xhr, status, error) {
+                                // Show the modal
+                                jQuery('.pesan-gagal').text(error);
+                                Toastify({
+                                    node: $("#failed-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 5000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 5000); // 3000 milliseconds = 3 seconds
+                            }
+                        });
+                    }
+                })
+
+                // Datatable list Cabang
+                jQuery('#data-table').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "http://127.0.0.1:8000/api/master-guru/list",
+                        "dataType": "json",
+                        "type": "POST",
+                        "headers": {
+                            'Authorization': 'Bearer ' + token
+                        }
+                    },
+                    "columns": [
+                        { data: 'id', className: 'text-center' },
+                        { data: 'nip', className: 'text-center' },
+                        { data: 'user_name', className: 'text-center' },
+                        { data: 'jenkel', className: 'text-center' },
+                        { data: 'role_name', className: 'text-center' },
+                        { data: 'jabatan', className: 'text-center' },
+                        { data: 'status', className: 'text-center' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+
+                                var status = '';
+                                if(data.is_active == 'Aktif')
+                                {
+                                    status = true;
+                                }else{
+                                    status = false;
+                                }
+
+                                // Create action buttons
+                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '"><i data-feather="eye" class="w-4 h-4 mr-1"></i></button>';
+                                var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
+
+                                // Combine the buttons
+                                var actions = editBtn + ' || ' + deleteBtn;
+                                return actions;
+                            }
+                        }
+                    ],
+                    "drawCallback": function(settings) {
+                        feather.replace();
+                    }
+                });
+
 
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

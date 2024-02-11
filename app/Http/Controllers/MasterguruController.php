@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MasterguruExport;
+use App\Imports\MasterguruImport;
+use App\Exports\TemplateMasterguruExport;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\MasterGuru;
@@ -10,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MasterguruController extends Controller
 {
@@ -264,5 +268,49 @@ class MasterguruController extends Controller
                 ],400);
             }
         }
+    }
+
+    public function exportData()
+    {
+        $master = MasterGuru::with('user')->whereHas('user', function ($q) {
+            return $q->where('role_id','>',2);
+        })->orderby('id','desc')->get();
+        $data = array();
+        foreach($master as $m)
+        {
+            $item['nip'] = $m->nip;
+            $item['name'] = $m->user->name ?? '';
+            $item['email'] = $m->user->email ?? '';
+            $item['jenkel'] = $m->jenkel;
+            $item['role'] = $m->user->role->name ?? '';
+            $item['jabatan'] = $m->jabatan;
+            $item['telpon'] = $m->telpon;
+            $data[] = $item;
+        }
+
+        return Excel::download(new MasterguruExport($data), 'Master-Guru-Export.xlsx');
+    }
+
+    public function template()
+    {
+        return Excel::download(new TemplateMasterguruExport(), 'Template-Master-Guru.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        // Lakukan validasi data impor
+        $request->validate([
+            'excel' => 'required|mimes:xls,xlsx',
+        ]);
+
+        // Proses data impor
+        $file = $request->file('excel');
+
+        Excel::import(new MasterguruImport, $file);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil melakukan import data master guru'
+        ],201);
     }
 }

@@ -377,10 +377,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="dropdown-menu w-40">
                                 <ul class="dropdown-content">
                                     <li>
-                                        <a href="" class="dropdown-item"> <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i> Import Data </a>
+                                        <a href="#" class="dropdown-item modal-import"> <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i> Import Data </a>
                                     </li>
                                     <li>
-                                        <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export Excel </a>
+                                        <a href="#" class="dropdown-item btn-export"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export Excel </a>
                                     </li>
                                 </ul>
                             </div>
@@ -627,6 +627,59 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Notification Gagal Hapus Guru Content -->
+            <!-- BEGIN: Modal Content -->
+            <div id="header-import-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- BEGIN: Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="font-medium text-base mr-auto">
+                                Form Import Data Guru
+                            </h2>
+                            <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                        </div>
+                        <!-- END: Modal Header -->
+                        <!-- BEGIN: Modal Body -->
+                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                            <div class="col-span-12 sm:col-span-6">
+                                <label for="modal-form-1" class="form-label">Unduh Template</label>
+                                <br/>
+                                <button type="button" class="btn btn-primary w-20 btn-unduh">Unduh</button>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="fileInput" class="form-label">File Excel</label>
+                                <input type="file" class="form-control" id="fileInput1" required>
+                            </div>
+                        </div>
+                        <!-- END: Modal Body -->
+                        <!-- BEGIN: Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Batal</button>
+                            <button type="button" class="btn btn-primary w-20 btn-import">Import</button>
+                        </div>
+                        <!-- END: Modal Footer -->
+                    </div>
+                </div>
+            </div>
+            <!-- END: Modal Content -->
+            <!-- BEGIN: Notification Sukses Import Guru Content -->
+            <div id="success-import-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="check-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Berhasil import data guru!</div>
+                    <div class="text-slate-500 mt-1 import-sukses"></div>
+                </div>
+            </div>
+            <!-- END: Notification Sukses Import Guru Content -->
+            <!-- BEGIN: Notification Gagal Import Guru Content -->
+            <div id="failed-import-notification-content" class="toastify-content hidden flex">
+                <i class="text-success" data-lucide="x-circle"></i> 
+                <div class="ml-4 mr-4">
+                    <div class="font-medium">Gagal import data guru!</div>
+                    <div class="text-slate-500 mt-1 import-gagal"></div>
+                </div>
+            </div>
+            <!-- END: Notification Gagal Import Guru Content -->
         </div>
         
         <!-- BEGIN: JS Assets-->
@@ -1046,6 +1099,143 @@ License: You must have a valid license purchased only from themeforest(the above
                         });
                     });
                 });
+
+                // Fungsi button export
+                jQuery('.btn-export').click(function() {
+                    // Akses URL Export data
+                    var linkto = 'http://127.0.0.1:8000/api/master-guru/export-data';
+                    jQuery.ajax({
+                        xhrFields: {
+                            responseType: 'blob',
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        type: 'GET',
+                        url: linkto,
+                        success: function(result, status, xhr) {
+
+                            var disposition = xhr.getResponseHeader('content-disposition');
+                            var matches = /"([^"]*)"/.exec(disposition);
+                            var filename = (matches != null && matches[1] ? matches[1] : 'Export-Master-Guru.xlsx');
+
+                            // The actual download
+                            var blob = new Blob([result], {
+                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                            });
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = filename;
+
+                            document.body.appendChild(link);
+
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    });
+                });
+
+                // Menampilkan modal export
+                jQuery('.modal-import').click(function() {
+                    // Show the modal
+                    const el = document.querySelector("#header-import-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show(); 
+                });
+
+                jQuery('.btn-unduh').click(function() {
+                    // Akses URL Export data
+                    var linkto = 'http://127.0.0.1:8000/api/master-guru/download-template';
+                    jQuery.ajax({
+                        xhrFields: {
+                            responseType: 'blob',
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        type: 'GET',
+                        url: linkto,
+                        success: function(result, status, xhr) {
+
+                            var disposition = xhr.getResponseHeader('content-disposition');
+                            var matches = /"([^"]*)"/.exec(disposition);
+                            var filename = (matches != null && matches[1] ? matches[1] : 'Template-Master-Guru.xlsx');
+
+                            // The actual download
+                            var blob = new Blob([result], {
+                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                            });
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = filename;
+
+                            document.body.appendChild(link);
+
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    });
+                });
+
+                // Fungsi button import
+                jQuery('btn-import').click(function() {
+                    // Get form data
+                    var inp = jQuery('#fileInput1')[0];
+                    var foto = inp.files[0];
+
+                    var formData = new FormData();
+                    formData.append('excel', foto);
+
+                    // Kirim permintaan pembaruan produk ke API
+                    jQuery.ajax({
+                        url: 'http://127.0.0.1:8000/api/master-guru/import-data',
+                        type: 'POST',
+                        headers: {
+                            "Authorization": "Bearer " + token
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Show the modal
+                            jQuery('.import-sukses').text(response.message);
+                            Toastify({
+                                node: $("#success-import-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 3000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000); // 3000 milliseconds = 3 seconds
+                        },
+                        error: function(xhr, status, error) {
+                            // Show the modal
+                            jQuery('.import-gagal').text(error);
+                            Toastify({
+                                node: $("#failed-import-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 5000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 5000); // 3000 milliseconds = 3 seconds
+                        }
+                    }); 
+                })
 
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

@@ -31,5 +31,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get("/data-support/role", [MasterguruController::class, 'supportRole']);
         Route::put("/update-data/{id}", [MasterguruController::class, 'updateGuru']);
         Route::delete("/hapus-data/{id}", [MasterguruController::class, 'hapus']);
+        Route::get("/export-data", [MasterguruController::class, 'exportData']);
+        Route::get("/download-template", [MasterguruController::class, 'template']);
+        Route::post("/import-data", [MasterguruController::class, 'import']);
     });
 });

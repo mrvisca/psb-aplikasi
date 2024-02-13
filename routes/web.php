@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\MastersiswaController;
 use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
+use App\Http\Controllers\JurusanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +26,5 @@ Route::get('/otentikasi/login',[AutentikasiController::class, 'loginView'])->nam
 Route::get('/aplikasi/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 Route::get('/aplikasi/comingsoon-page',[DashboardController::class, 'pageConstruction'])->name('comingsoon');
 Route::get('/aplikasi/master-guru',[MasterguruController::class, 'index'])->name('masterguru');
+Route::get('/aplikasi/master-siswa',[MastersiswaController::class, 'index'])->name('mastersiswa');
+Route::get('/aplikasi/master-jurusan',[JurusanController::class, 'index'])->name('masterjurusan');

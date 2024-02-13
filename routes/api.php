@@ -3,6 +3,7 @@
 use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JurusanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get("/export-data", [MasterguruController::class, 'exportData']);
         Route::get("/download-template", [MasterguruController::class, 'template']);
         Route::post("/import-data", [MasterguruController::class, 'import']);
+    });
+
+    Route::prefix('master-jurusan')->group(function () {
+        Route::get("/list", [JurusanController::class, 'listJurusan']);
+        Route::post("/tambah-data", [JurusanController::class, 'addJurusan']);
+        Route::put("/update-data/{id}", [JurusanController::class, 'update']);
+        Route::delete("/hapus-data/{id}", [JurusanController::class, 'hapus']);
     });
 });

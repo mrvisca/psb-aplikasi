@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="description" content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
-        <title>Master Guru - Aplikasi PSB</title>
+        <title>Master Siswa - Aplikasi PSB</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ asset('template/dist/css/app.css') }}" />
         <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -247,7 +247,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Aplikasi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Master Guru</li>
+                            <li class="breadcrumb-item active" aria-current="page">Master Siswa</li>
                         </ol>
                     </nav>
                     <!-- END: Breadcrumb -->
@@ -397,7 +397,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Status Pegawai</th>
+                                    <th>Status</th>
                                     <th>Jabatan</th>
                                     <th>Status</th>
                                     <th>Action</th>

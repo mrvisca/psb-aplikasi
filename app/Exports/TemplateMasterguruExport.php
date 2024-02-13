@@ -27,7 +27,7 @@ class TemplateMasterguruExport implements FromArray, WithHeadings, ShouldAutoSiz
                 $item['nama'] = $m->user->name ?? '';
                 $item['email'] = 'user@mail.com';
                 $item['password'] = 'password';
-                $item['jenkel'] = 'Laki-laki/Perempuan';
+                $item['jenkel'] = 'laki-laki/perempuan';
                 $item['role'] = 'Wali Kelas/Guru BK/Admin Raport/Bagian Kurikulum/Bagian Tata Usaha/Guru Agama';
                 $item['jabatan'] = $m->jabatan;
                 $item['telpon'] = '6282140466335';

@@ -48,13 +48,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="menu">
+                        <a href="{{ route('mastersiswa') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="users"></i> </div>
                             <div class="menu__title"> Master Siswa </div>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="menu">
+                        <a href="{{ route('masterjurusan') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="menu__title"> Master Jurusan </div>
                         </a>
@@ -147,13 +147,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="side-menu">
+                        <a href="{{ route('mastersiswa') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
                             <div class="side-menu__title"> Master Siswa </div>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="side-menu">
+                        <a href="{{ route('masterjurusan') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="side-menu__title"> Master Jurusan </div>
                         </a>

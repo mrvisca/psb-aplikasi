@@ -38,12 +38,12 @@ class MasterguruImport implements ToCollection, WithHeadingRow
             {
                 // Create User
                 $user = new User();
-                $user->name = $row['name'];
+                $user->name = $row['nama'];
                 $user->email = $row['email'];
                 $user->password = Hash::make($row['password']);
                 $user->email_verified_at = date('Y-m-d H:i:s');
                 $user->role_id = $find->id;
-                $user->status = 1;
+                $user->is_active = 1;
                 $user->save();
 
                 // Buat Profil Guru

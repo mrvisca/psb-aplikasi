@@ -1178,7 +1178,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 });
 
                 // Fungsi button import
-                jQuery('btn-import').click(function() {
+                jQuery('.btn-import').click(function() {
                     // Get form data
                     var inp = jQuery('#fileInput1')[0];
                     var foto = inp.files[0];
@@ -1231,7 +1231,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             }).showToast();
 
                             setTimeout(function() {
-                                location.reload();
+                                // location.reload();
                             }, 5000); // 3000 milliseconds = 3 seconds
                         }
                     }); 

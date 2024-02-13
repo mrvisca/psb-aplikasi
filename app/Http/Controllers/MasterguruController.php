@@ -41,7 +41,9 @@ class MasterguruController extends Controller
         // Hitunga keseluruhan
         $hitung = MasterGuru::count();
 
-        $masgu = MasterGuru::with('user')->where(function ($q) use ($search) {
+        $masgu = MasterGuru::with('user')->whereHas('user', function ($q){
+            return $q->where('role_id','>',2);
+        })->where(function ($q) use ($search) {
             if($search != null)
             {
                 return $q->where('jabatan','ILIKE','%'.$search.'%')->orWhere(function ($queri) use ($search) {

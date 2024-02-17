@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="description" content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
-        <title>Master Siswa - Aplikasi PSB</title>
+        <title>Master Mata Pelajaran - Aplikasi PSB</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ asset('template/dist/css/app.css') }}" />
         <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -70,6 +70,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="{{ route('masterjurusan') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="menu__title"> Master Jurusan </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('mastermapel') }}" class="menu">
+                            <div class="menu__ucon"> <i data-lucide="book"></i></div>
+                            <div class="menu__title"> Master Mata Pelajaran</div>
                         </a>
                     </li>
                     <li>
@@ -160,7 +166,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('mastersiswa') }}" class="side-menu side-menu--active">
+                        <a href="{{ route('mastersiswa') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
                             <div class="side-menu__title"> Master Siswa </div>
                         </a>
@@ -169,6 +175,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="{{ route('masterjurusan') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="side-menu__title"> Master Jurusan </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('mastermapel') }}" class="side-menu side-menu--active">
+                            <div class="side-menu__icon"> <i data-lucide="book"></i> </div>
+                            <div class="side-menu__title"> Master Mata Pelajaran </div>
                         </a>
                     </li>
                     <li>
@@ -247,7 +259,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Aplikasi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Master Siswa</li>
+                            <li class="breadcrumb-item active" aria-current="page">Master Guru</li>
                         </ol>
                     </nav>
                     <!-- END: Breadcrumb -->
@@ -366,7 +378,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Top Bar -->
                 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                     <h2 class="text-lg font-medium mr-auto">
-                        List Master Siswa
+                        List Master Mata Pelajaran
                     </h2>
                     <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                         <button class="btn btn-primary shadow-md mr-2 btn-tambah">Tambah Data</button>
@@ -394,10 +406,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NIS</th>
                                     <th>Nama</th>
-                                    <th>Jurusan</th>
-                                    <th>Jenis Kelamin</th>
+                                    <th>Kelompok</th>
+                                    <th>Type Mapel</th>
                                     <th>Kelas</th>
                                     <th>Action</th>
                                 </tr>
@@ -417,7 +428,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Buat Data Siswa
+                                Form Buat Data Mapel
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -425,34 +436,29 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">NIS</label>
-                                <input type="number" class="form-control form-nis" placeholder="NIS" required>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control form-nama" placeholder="Sukaryo Sulaksono" required>
+                                <input type="text" class="form-control form-name" placeholder="Sukaryo Sulaksono" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jurusan</label>
-                                <select class="form-select form-jurusan" required>
-                                    <option selected disabled> --- Pilih Jurusan --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
+                                <label for="modal-form-6" class="form-label">Kelompok Mapel</label>
+                                <select class="form-select form-kelompok" required>
+                                    <option selected disabled> --- Pilih Kelompok Mapel --- </option>
+                                    <option value="kelompok a"> Kelompok A </option>
+                                    <option value="kelompok b"> Kelompok B </option>
+                                    <option value="kelompok c"> Kelompok C </option>
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
-                                <select class="form-select form-jenkel" required>
-                                    <option selected disabled> --- Pilih Jenis Kelamin --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                    <option value="perempuan"> Perempuan </option>
+                                <label for="modal-form-6" class="form-label">Type Mapel</label>
+                                <select class="form-select form-type" required>
+                                    <option selected disabled> --- Pilih Type Mapel --- </option>
+                                    <option value="pengetahuan">Pengetahuan </option>
+                                    <option value="keterampilan"> Keterampilan </option>
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Kelas</label>
-                                <select class="form-select form-kelas" required>
-                                    <option selected disabled> --- Pilih Kelas --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                </select>
+                                <label for="modal-form-5" class="form-label">Kelas</label>
+                                <input type="text" class="form-control form-kelas" placeholder="10 IPA 1" required>
                             </div>
                         </div>
                         <!-- END: Modal Body -->
@@ -466,24 +472,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Tambah Siswa Content -->
+            <!-- BEGIN: Notification Sukses Tambah mapel Content -->
             <div id="success-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil membuat data Siswa baru!</div>
+                    <div class="font-medium">Berhasil membuat data mapel baru!</div>
                     <div class="text-slate-500 mt-1 pesan-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Tambah Siswa Content -->
-            <!-- BEGIN: Notification Gagal Tambah Siswa Content -->
+            <!-- END: Notification Sukses Tambah mapel Content -->
+            <!-- BEGIN: Notification Gagal Tambah mapel Content -->
             <div id="failed-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal membuat data Siswa baru!</div>
+                    <div class="font-medium">Gagal membuat data mapel baru!</div>
                     <div class="text-slate-500 mt-1 pesan-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Tambah Siswa Content -->
+            <!-- END: Notification Gagal Tambah mapel Content -->
             <!-- BEGIN: Modal Content -->
             <div id="header-update-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -491,7 +497,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Edit Data Siswa
+                                Form Edit Data Mapel
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -499,35 +505,30 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">NIS</label>
-                                <input type="hidden" class="form-control update-id" placeholder="NIP">
-                                <input type="number" class="form-control update-nis" placeholder="NIS" required>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control update-nama" placeholder="Sukaryo Sulaksono" required>
+                                <input type="hidden" class="form-control update-id" placeholder="ID">
+                                <input type="text" class="form-control update-name" placeholder="Sukaryo Sulaksono" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jurusan</label>
-                                <select class="form-select update-jurusan" required>
-                                    <option selected disabled> --- Pilih Jurusan --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
+                                <label for="modal-form-6" class="form-label">Kelompok Mapel</label>
+                                <select class="form-select update-kelompok" required>
+                                    <option selected disabled> --- Pilih Kelompok Mapel --- </option>
+                                    <option value="kelompok a"> Kelompok A </option>
+                                    <option value="kelompok b"> Kelompok B </option>
+                                    <option value="kelompok c"> Kelompok C </option>
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
-                                <select class="form-select update-jenkel" required>
-                                    <option selected disabled> --- Pilih Jenis Kelamin --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                    <option value="perempuan"> Perempuan </option>
+                                <label for="modal-form-6" class="form-label">Type Mapel</label>
+                                <select class="form-select update-type" required>
+                                    <option selected disabled> --- Pilih Type Mapel --- </option>
+                                    <option value="pengetahuan">Pengetahuan </option>
+                                    <option value="keterampilan"> Keterampilan </option>
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Kelas</label>
-                                <select class="form-select update-kelas" required>
-                                    <option selected disabled> --- Pilih Kelas --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                </select>
+                                <label for="modal-form-5" class="form-label">Kelas</label>
+                                <input type="text" class="form-control update-kelas" placeholder="10 IPA 1" required>
                             </div>
                         </div>
                         <!-- END: Modal Body -->
@@ -541,24 +542,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Update Siswa Content -->
+            <!-- BEGIN: Notification Sukses Update mapel Content -->
             <div id="success-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil update data Siswa!</div>
+                    <div class="font-medium">Berhasil update data mapel!</div>
                     <div class="text-slate-500 mt-1 update-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Update Siswa Content -->
-            <!-- BEGIN: Notification Gagal Update Siswa Content -->
+            <!-- END: Notification Sukses Update mapel Content -->
+            <!-- BEGIN: Notification Gagal Update mapel Content -->
             <div id="failed-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal update data Siswa!</div>
+                    <div class="font-medium">Gagal update data mapel!</div>
                     <div class="text-slate-500 mt-1 update-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Update Siswa Content -->
+            <!-- END: Notification Gagal Update mapel Content -->
             <!-- BEGIN: Modal Content -->
             <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -568,7 +569,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i> 
                                 <div class="text-3xl mt-5">Apa kamu yakin?</div>
                                 <div class="text-slate-500 mt-2">
-                                    Apa kamu yakin akan menghapus data Siswa ini? 
+                                    Apa kamu yakin akan menghapus data mapel ini? 
                                     <br>
                                     Data yang terhapus tidak bisa dikembalikan.
                                 </div>
@@ -582,24 +583,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Hapus Siswa Content -->
+            <!-- BEGIN: Notification Sukses Hapus mapel Content -->
             <div id="success-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil hapus data Siswa!</div>
+                    <div class="font-medium">Berhasil hapus data mapel!</div>
                     <div class="text-slate-500 mt-1 hapus-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Hapus Siswa Content -->
-            <!-- BEGIN: Notification Gagal Hapus Siswa Content -->
+            <!-- END: Notification Sukses Hapus mapel Content -->
+            <!-- BEGIN: Notification Gagal Hapus mapel Content -->
             <div id="failed-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal hapus data Siswa!</div>
+                    <div class="font-medium">Gagal hapus data mapel!</div>
                     <div class="text-slate-500 mt-1 hapus-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Hapus Siswa Content -->
+            <!-- END: Notification Gagal Hapus mapel Content -->
             <!-- BEGIN: Modal Content -->
             <div id="header-import-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -607,7 +608,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Import Data Siswa
+                                Form Import Data Mapel
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -635,24 +636,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Import Siswa Content -->
+            <!-- BEGIN: Notification Sukses Import mapel Content -->
             <div id="success-import-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil import data Siswa!</div>
+                    <div class="font-medium">Berhasil import data mapel!</div>
                     <div class="text-slate-500 mt-1 import-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Import Siswa Content -->
-            <!-- BEGIN: Notification Gagal Import Siswa Content -->
+            <!-- END: Notification Sukses Import mapel Content -->
+            <!-- BEGIN: Notification Gagal Import mapel Content -->
             <div id="failed-import-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal import data Siswa!</div>
+                    <div class="font-medium">Gagal import data mapel!</div>
                     <div class="text-slate-500 mt-1 import-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Import Siswa Content -->
+            <!-- END: Notification Gagal Import mapel Content -->
         </div>
         
         <!-- BEGIN: JS Assets-->
@@ -718,7 +719,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 });
 
                 // Panggil data support role
-                var url = 'http://127.0.0.1:8000/api/master-siswa/data-support/role';
+                var url = 'http://127.0.0.1:8000/api/master-mapel/data-support/role';
                 fetch(url, {
                     method: 'GET',
                     headers: {
@@ -738,36 +739,33 @@ License: You must have a valid license purchased only from themeforest(the above
                 });
 
                 jQuery('.btn-simpan').click(function() {
-                    // Show the modal
-                    event.preventDefault(); // Prevent default form submission
+                    //show the model
+                    event.preventDefault();
 
-                    // Get form data
-                    var nis = jQuery(".form-nis").val();
-                    var name = jQuery(".form-nama").val();
-                    var jurusan = jQuery(".form-jurusan").val();
-                    var jenkel = jQuery(".form-jenkel").val();
-                    var kelas = jQuery(".form-kelas").val();
-                    var inp = jQuery('#fileInput')[0];
+                    //get form data
+                    var name = jQuery(".form-name").val();
+                    var kelompok = jQuery(".form-kelompok").val();
+                    var type = jQuery(".form-type").val();
+                    var kelas = jQuery(".type-kelas").val();
 
                     var formData = new FormData();
-                    formData.append('nis', nis);
                     formData.append('name', name);
-                    formData.append('jurusan', jurusan);
-                    formData.append('jenkel', jenkel);
+                    formData.append('kelompok', kelompok);
+                    formData.append('type', type);
                     formData.append('kelas', kelas);
 
-                    // Kirim permintaan pembaruan produk ke API
+                    //kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
-                        url: 'http://127.0.0.1:8000/api/master-siswa/tambah-data',
+                        url: 'http://127.0.0.1:8000/api/master-mapel/tambah-data',
                         type: 'POST',
                         headers: {
-                            "Authorization": "Bearer " + token
+                            'Authorization': 'Bearer ' + token
                         },
                         data: formData,
                         processData: false,
                         contentType: false,
                         success: function(response) {
-                            // Show the modal
+                            //show the modal
                             jQuery('.pesan-sukses').text(response.message);
                             Toastify({
                                 node: $("#success-notification-content")
@@ -782,11 +780,11 @@ License: You must have a valid license purchased only from themeforest(the above
                             }).showToast();
 
                             setTimeout(function() {
-                                location.reload();
-                            }, 3000); // 3000 milliseconds = 3 seconds
+                                location.reaload();
+                            }, 3000);
                         },
                         error: function(xhr, status, error) {
-                            // Show the modal
+                            // Show the modals
                             jQuery('.pesan-gagal').text(error);
                             Toastify({
                                 node: $("#failed-notification-content")
@@ -802,17 +800,17 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             setTimeout(function() {
                                 location.reload();
-                            }, 5000); // 3000 milliseconds = 3 seconds
+                            }, 5000);
                         }
                     });
                 })
 
-                // Datatable list Cabang
+                // Datatable list cabang
                 jQuery('#data-table').DataTable({
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "http://127.0.0.1:8000/api/master-siswa/list",
+                        "url": "http://127.0.0.1:8000/api/master-mapel/list",
                         "dataType": "json",
                         "type": "POST",
                         "headers": {
@@ -820,23 +818,23 @@ License: You must have a valid license purchased only from themeforest(the above
                         }
                     },
                     "columns": [
-                        { data: 'id', className: 'text-center' },
-                        { data: 'nis', className: 'text-center' },
-                        { data: 'user_name', className: 'text-center' },
-                        { data: 'jurusan_name', className: 'text-center' },
-                        { data: 'jenkel', className: 'text-center' },
-                        { data: 'kelas', className: 'text-center' },
+                        { data: 'id', className: 'text-center'},
+                        { data: 'name', className: 'text-center'},
+                        { data: 'kelompok', className: 'text-center'},
+                        { data: 'type', className: 'text-center'},
+                        { data: 'kelas', className: 'text-center'},
+                        { data: 'action', className: 'text-center'},
                         {
                             data: null,
-                            render: function (data, type, row) {
+                            render: function(data, type, row) {
 
-                                // Create action buttons
-                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-user_name="' + data.user_name + '" data-nis="' + data.nis + '" data-jenkel="' + data.jenkel + '" data-jurusan_name="' + data.jurusan_name + '" data-kelas="' + data.kelas + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
-                                var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
+                                //create action buttons
+                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-name="' + data.name + '" data-kelompok="' + data.kelompok + '" data-type="' + data.type + '" data-kelas="' + data.kelas + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
+                                var deleteBtn = '<button class="btn btn-dangerbtn-delete" data-id="' + data.id +'"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
 
-                                // Combine the buttons
+                                //combine the button
                                 var actions = editBtn + ' || ' + deleteBtn;
-                                return actions;
+                                return action.replace();
                             }
                         }
                     ],
@@ -844,290 +842,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         feather.replace();
                     }
                 });
-
-                // Passing data list row ke dalam modal update
-                jQuery('#data-table').on('click', '.btn-edit', function() {
-                    // Show the modal
-                    const el = document.querySelector("#header-update-footer-modal-preview");
-                    const modal = tailwind.Modal.getOrCreateInstance(el);
-                    modal.show();
-
-                    var id = jQuery(this).attr("data-id");
-                    var user_name = jQuery(this).attr("data-user_name");
-                    var jurusan_name = jQuery(this).attr("data-jurusan_name_");
-                    var jenkel = jQuery(this).attr("data-jenkel");
-                    var kelas = jQuery(this).attr("data-kelas");
-
-                    // Handle edit action
-                    jQuery('.update-id').val(id);
-                    jQuery('.update-nis').val(nis);
-                    jQuery('.update-nama').val(user_name).prop('disabled',true);
-                    // jQuery('.update-jurusan').val(jurusan_name).prop('disabled',true);
-                    jQuery('.update-jurusan').val(jurusan_name);
-                    jQuery('.update-jenkel').val(jenkel);
-                    jQuery('.update-kelas').val(kelas);
-                });
-
-                // Fungsi button update data
-                jQuery('.btn-update').click(function() {
-                    // Ajax update
-                    var id = jQuery('.update-id').val();
-                    var name = jQuery('.update-nama').val();
-                    var nis = jQuery('.update-nis').val();
-                    var jurusan = jQuery('.update-jurusan').val();
-                    var jenkel = jQuery('.update-jenkel').val();
-                    var kelas = jQuery('.update-kelas').val();
-
-                    // Kirim permintaan pembaruan produk ke API
-                    jQuery.ajax({
-                        url: '{{ env('BASE_URL') }}api/master-siswa/update-data/' + id,
-                        type: "PUT",
-                        beforeSend: function(xhr) {
-                            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                        },
-                        data: {
-                            name: name,
-                            nis: nis,
-                            jurusan: jurusan,
-                            jenkel: jenkel,
-                            kelas: kelas,
-                        },
-                        success: function(response) {
-                            // Show the modal
-                            jQuery('.update-sukses').text(response.message);
-                            Toastify({
-                                node: $("#success-update-notification-content")
-                                    .clone()
-                                    .removeClass("hidden")[0],
-                                duration: 3000,
-                                newWindow: true,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                stopOnFocus: true,
-                            }).showToast();
-
-                            setTimeout(function() {
-                                location.reload();
-                            }, 3000); // 3000 milliseconds = 3 seconds
-                        },
-                        error: function(xhr, status, error) {
-                            // Show the modal
-                            jQuery('.update-gagal').text(response.message);
-                            Toastify({
-                                node: $("#failed-update-notification-content")
-                                    .clone()
-                                    .removeClass("hidden")[0],
-                                duration: 5000,
-                                newWindow: true,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                stopOnFocus: true,
-                            }).showToast();
-
-                            setTimeout(function() {
-                                location.reload();
-                            }, 5000); // 3000 milliseconds = 3 seconds
-                        }
-                    });
-                });
-
-                // Fungsi Tombol hapus
-                jQuery('#data-table').on('click', '.btn-delete', function() {
-                    var id = jQuery(this).attr("data-id");
-
-                    // Show the modal
-                    const el = document.querySelector("#delete-modal-preview");
-                    const modal = tailwind.Modal.getOrCreateInstance(el);
-                    modal.show();
-
-                    jQuery('.btn-iya').click(function() {
-                        // Ajax delete Api
-                        jQuery.ajax({
-                            url: '{{ env('BASE_URL') }}api/master-siswa/hapus-data/' + id,
-                            type: 'DELETE',
-                            headers: {
-                                'Authorization': 'Bearer ' + token
-                            },
-                            success: function(response) {
-                                // Show the modal
-                                jQuery('.hapus-sukses').text(response.message);
-                                Toastify({
-                                    node: $("#success-hapus-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 3000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000); // 3000 milliseconds = 3 seconds
-                            },
-                            error: function(xhr, status, error) {
-                                // Show the modal
-                                jQuery('.hapus-gagal').text(error);
-                                Toastify({
-                                    node: $("#failed-hapus-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 5000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 5000); // 3000 milliseconds = 3 seconds
-                            }
-                        });
-                    });
-                });
-
-                // Fungsi button export
-                jQuery('.btn-export').click(function() {
-                    // Akses URL Export data
-                    var linkto = 'http://127.0.0.1:8000/api/master-siswa/export-data';
-                    jQuery.ajax({
-                        xhrFields: {
-                            responseType: 'blob',
-                        },
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        },
-                        type: 'GET',
-                        url: linkto,
-                        success: function(result, status, xhr) {
-
-                            var disposition = xhr.getResponseHeader('content-disposition');
-                            var matches = /"([^"]*)"/.exec(disposition);
-                            var filename = (matches != null && matches[1] ? matches[1] : 'Export-Master-Siswa.xlsx');
-
-                            // The actual download
-                            var blob = new Blob([result], {
-                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                            });
-                            var link = document.createElement('a');
-                            link.href = window.URL.createObjectURL(blob);
-                            link.download = filename;
-
-                            document.body.appendChild(link);
-
-                            link.click();
-                            document.body.removeChild(link);
-                        }
-                    });
-                });
-
-                // Menampilkan modal export
-                jQuery('.modal-import').click(function() {
-                    // Show the modal
-                    const el = document.querySelector("#header-import-footer-modal-preview");
-                    const modal = tailwind.Modal.getOrCreateInstance(el);
-                    modal.show(); 
-                });
-
-                jQuery('.btn-unduh').click(function() {
-                    // Akses URL Export data
-                    var linkto = 'http://127.0.0.1:8000/api/master-siswa/download-template';
-                    jQuery.ajax({
-                        xhrFields: {
-                            responseType: 'blob',
-                        },
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        },
-                        type: 'GET',
-                        url: linkto,
-                        success: function(result, status, xhr) {
-
-                            var disposition = xhr.getResponseHeader('content-disposition');
-                            var matches = /"([^"]*)"/.exec(disposition);
-                            var filename = (matches != null && matches[1] ? matches[1] : 'Template-Master-Siswa.xlsx');
-
-                            // The actual download
-                            var blob = new Blob([result], {
-                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                            });
-                            var link = document.createElement('a');
-                            link.href = window.URL.createObjectURL(blob);
-                            link.download = filename;
-
-                            document.body.appendChild(link);
-
-                            link.click();
-                            document.body.removeChild(link);
-                        }
-                    });
-                });
-
-                // Fungsi button import
-                jQuery('.btn-import').click(function() {
-                    // Get form data
-                    var inp = jQuery('#fileInput1')[0];
-                    var foto = inp.files[0];
-
-                    var formData = new FormData();
-                    formData.append('excel', foto);
-
-                    // Kirim permintaan pembaruan produk ke API
-                    jQuery.ajax({
-                        url: 'http://127.0.0.1:8000/api/master-siswa/import-data',
-                        type: 'POST',
-                        headers: {
-                            "Authorization": "Bearer " + token
-                        },
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function(response) {
-                            // Show the modal
-                            jQuery('.import-sukses').text(response.message);
-                            Toastify({
-                                node: $("#success-import-notification-content")
-                                    .clone()
-                                    .removeClass("hidden")[0],
-                                duration: 3000,
-                                newWindow: true,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                stopOnFocus: true,
-                            }).showToast();
-
-                            setTimeout(function() {
-                                location.reload();
-                            }, 3000); // 3000 milliseconds = 3 seconds
-                        },
-                        error: function(xhr, status, error) {
-                            // Show the modal
-                            jQuery('.import-gagal').text(error);
-                            Toastify({
-                                node: $("#failed-import-notification-content")
-                                    .clone()
-                                    .removeClass("hidden")[0],
-                                duration: 5000,
-                                newWindow: true,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                stopOnFocus: true,
-                            }).showToast();
-
-                            setTimeout(function() {
-                                // location.reload();
-                            }, 5000); // 3000 milliseconds = 3 seconds
-                        }
-                    }); 
-                })
 
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

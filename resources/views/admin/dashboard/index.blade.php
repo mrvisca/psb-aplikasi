@@ -60,6 +60,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('mastermapel') }}" class="menu">
+                            <div class="menu__ucon"> <i data-lucide="book"></i></div>
+                            <div class="menu__title"> Master Mata Pelajaran</div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('comingsoon') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="menu__title"> Data Tahun Ajar </div>
@@ -156,6 +162,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="{{ route('masterjurusan') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="side-menu__title"> Master Jurusan </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('mastermapel') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="book"></i> </div>
+                            <div class="side-menu__title"> Master Mata Pelajaran </div>
                         </a>
                     </li>
                     <li>

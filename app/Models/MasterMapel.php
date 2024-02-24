@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class MasterMapel extends Model
 {
     use HasFactory;
+    protected $fillable = ['jurusan_id','name','kelompok','type'];
+
+    public function kelas()
+    {
+        return $this->belongsTo(MasterJurusan::class,'jurusan_id');
+    }
 }

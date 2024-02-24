@@ -48,9 +48,9 @@ class MasterguruController extends Controller
         })->where(function ($q) use ($search) {
             if($search != null)
             {
-                return $q->where('jabatan','ILIKE','%'.$search.'%')->orWhere(function ($queri) use ($search) {
+                return $q->where('jabatan','LIKE','%'.$search.'%')->orWhere(function ($queri) use ($search) {
                     return $queri->whereHas('user', function ($kueri) use ($search) {
-                        return $kueri->where('name','ILIKE','%'.$search.'%');
+                        return $kueri->where('name','LIKE','%'.$search.'%');
                     });
                 })->orWhere('nip',$search);
             }

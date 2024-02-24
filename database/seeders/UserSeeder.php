@@ -26,16 +26,6 @@ class UserSeeder extends Seeder
                 'is_active' => true,
                 'created_at' => '2023-11-25 23:08:00',
             ],
-            [
-                'id' => 2,
-                'name' => 'Visca Putra',
-                'email' => 'bimasaktiputra95@gmail.com',
-                'password' => Hash::make('11223344'),
-                'role_id' => 2,
-                'email_verified_at' => '2023-11-25 23:08:00',
-                'is_active' => true,
-                'created_at' => '2023-11-25 23:08:00',
-            ],
         ];
 
         User::insert($data);

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MasterJurusan extends Model
 {
     use HasFactory;
+    protected $table="master_kelas";
 
     public function hitung()
     {

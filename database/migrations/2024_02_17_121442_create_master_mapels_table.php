@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('master_mapels', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('jurusan_id');
+            $table->string('name');
+            $table->enum('kelompok',['Kelompok A','Kelompok B','Kelompok C'])->default('Kelompok A');
+            $table->enum('type',['Nilai Pengetahuan','Nilai Keterampilan'])->default('Nilai Pengetahuan');
             $table->timestamps();
         });
     }

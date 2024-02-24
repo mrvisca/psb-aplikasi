@@ -4,8 +4,7 @@ use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JurusanController;
-use App\Http\Controllers\MasterMapelController;
-use App\Http\Controllers\MastersiswaController;
+use App\Http\Controllers\MastermapelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,19 +45,25 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete("/hapus-data/{id}", [JurusanController::class, 'hapus']);
     });
 
-    Route::prefix('master-siswa')->group(function() {
-        Route::post("/list", [MastersiswaController::class, 'listSiswa']);
-        Route::get("/data-support/role", [MastersiswaController::class, 'supportRole']);
-        Route::post("/tambah-data", [MastersiswaController::class, 'addMaster']);
-        Route::put("/update-data/{id}", [MastersiswaController::class, 'updateSiswa']);
-        Route::put("/delete-data/{id}", [MastersiswaController::class, 'deleteSiswa']);
-        Route::get("/export-data", [MastersiswaController::class, 'exportData']);
-        Route::post("/import-data", [MastersiswaController::class, 'importData']);
-        Route::get("/download-template", [MastersiswaController::class, 'template']);
-    });
+    // Route::prefix('master-siswa')->group(function() {
+    //     Route::post("/list", [MastersiswaController::class, 'listSiswa']);
+    //     Route::get("/data-support/role", [MastersiswaController::class, 'supportRole']);
+    //     Route::post("/tambah-data", [MastersiswaController::class, 'addMaster']);
+    //     Route::put("/update-data/{id}", [MastersiswaController::class, 'updateSiswa']);
+    //     Route::put("/delete-data/{id}", [MastersiswaController::class, 'deleteSiswa']);
+    //     Route::get("/export-data", [MastersiswaController::class, 'exportData']);
+    //     Route::post("/import-data", [MastersiswaController::class, 'importData']);
+    //     Route::get("/download-template", [MastersiswaController::class, 'template']);
+    // });
 
-    Route::prefix('master-mapel')->group(function() {
-        Route::post("/list", );
-        Route::get("/data-support/role", [MasterMapelController::class, 'supportRole']);
+    Route::prefix('master-mapel')->group(function () {
+        Route::post("/list", [MastermapelController::class, 'listMapel']);
+        Route::get("/data-support/kelas", [MastermapelController::class, 'kelasSupport']);
+        Route::post("/tambah-data", [MastermapelController::class, 'addMapel']);
+        Route::put("/update-data/{id}", [MastermapelController::class, 'updateData']);
+        Route::delete("/hapus-data/{id}", [MastermapelController::class, 'deleteData']);
+        Route::get("/export-data/export-xls", [MastermapelController::class, 'exportData']);
+        Route::get("/export-data/download-template", [MastermapelController::class, 'template']);
+        Route::get("/import-data/import-xls", [MastermapelController::class, 'import']);
     });
 });

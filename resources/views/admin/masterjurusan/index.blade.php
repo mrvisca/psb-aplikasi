@@ -69,7 +69,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>
                         <a href="{{ route('masterjurusan') }}" class="menu menu--active">
                             <div class="menu__icon"> <i data-lucide="home"></i> </div>
-                            <div class="menu__title"> Master Jurusan </div>
+                            <div class="menu__title"> Master Kelas </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('masterpelajaran') }}" class="menu">
+                            <div class="menu__icon"> <i data-lucide="book-open"></i> </div>
+                            <div class="menu__title"> Master Mapel </div>
                         </a>
                     </li>
                     <li>
@@ -168,7 +174,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>
                         <a href="{{ route('masterjurusan') }}" class="side-menu side-menu--active">
                             <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
-                            <div class="side-menu__title"> Master Jurusan </div>
+                            <div class="side-menu__title"> Master Kelas </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('masterpelajaran') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="book-open"></i> </div>
+                            <div class="side-menu__title"> Master Mapel </div>
                         </a>
                     </li>
                     <li>
@@ -247,7 +259,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Aplikasi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Master Jurusan</li>
+                            <li class="breadcrumb-item active" aria-current="page">Master Kelas</li>
                         </ol>
                     </nav>
                     <!-- END: Breadcrumb -->
@@ -366,7 +378,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Top Bar -->
                 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                     <h2 class="text-lg font-medium mr-auto">
-                        List Master Jurusan
+                        List Master Kelas
                     </h2>
                     <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                         <button class="btn btn-primary shadow-md mr-2 btn-tambah">Tambah Data</button>
@@ -401,7 +413,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Buat Data Jurusan
+                                Form Buat Data Kelas
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -409,17 +421,17 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">Kode Jurusan</label>
+                                <label for="modal-form-1" class="form-label">Kode Kelas</label>
                                 <input type="text" class="form-control form-kode" placeholder="IPA010" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-2" class="form-label">Nama Jurusan</label>
+                                <label for="modal-form-2" class="form-label">Nama Kelas</label>
                                 <input type="text" class="form-control form-name" placeholder="IPA 10" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-3" class="form-label">Status</label>
                                 <select class="form-select form-is_active" required>
-                                    <option selected disabled> --- Pilih Status Jurusan --- </option>
+                                    <option selected disabled> --- Pilih Status Kelas --- </option>
                                     <option value="1"> Aktif </option>
                                     <option value="0"> Nonaktif </option>
                                 </select>
@@ -436,24 +448,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Tambah Jurusan Content -->
+            <!-- BEGIN: Notification Sukses Tambah Kelas Content -->
             <div id="success-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil membuat data jurusan baru!</div>
+                    <div class="font-medium">Berhasil membuat data kelas baru!</div>
                     <div class="text-slate-500 mt-1 pesan-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Tambah Jurusan Content -->
-            <!-- BEGIN: Notification Gagal Tambah Jurusan Content -->
+            <!-- END: Notification Sukses Tambah Kelas Content -->
+            <!-- BEGIN: Notification Gagal Tambah Kelas Content -->
             <div id="failed-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal membuat data jurusan baru!</div>
+                    <div class="font-medium">Gagal membuat data kelas baru!</div>
                     <div class="text-slate-500 mt-1 pesan-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Tambah Jurusan Content -->
+            <!-- END: Notification Gagal Tambah Kelas Content -->
             <!-- BEGIN: Modal Content -->
             <div id="header-update-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -461,7 +473,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Edit Data Jurusan
+                                Form Edit Data Kelas
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -469,18 +481,18 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">Kode Jurusan</label>
+                                <label for="modal-form-1" class="form-label">Kode Kelas</label>
                                 <input type="hidden" class="form-control update-id">
                                 <input type="text" class="form-control update-kode" placeholder="IPA010">
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-2" class="form-label">Nama Jurusan</label>
+                                <label for="modal-form-2" class="form-label">Nama Kelas</label>
                                 <input type="text" class="form-control update-nama" placeholder="IPA 10">
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-3" class="form-label">Status</label>
                                 <select class="form-select update-status">
-                                    <option selected disabled> --- Pilih Status Jurusan --- </option>
+                                    <option selected disabled> --- Pilih Status Kelas --- </option>
                                     <option value="1"> Aktif </option>
                                     <option value="0"> Nonaktif </option>
                                 </select>
@@ -497,24 +509,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Update Jurusan Content -->
+            <!-- BEGIN: Notification Sukses Update Kelas Content -->
             <div id="success-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil update data jurusan!</div>
+                    <div class="font-medium">Berhasil update data kelas!</div>
                     <div class="text-slate-500 mt-1 update-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Update Jurusan Content -->
-            <!-- BEGIN: Notification Gagal Update Jurusan Content -->
+            <!-- END: Notification Sukses Update Kelas Content -->
+            <!-- BEGIN: Notification Gagal Update Kelas Content -->
             <div id="failed-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal update data jurusan!</div>
+                    <div class="font-medium">Gagal update data kelas!</div>
                     <div class="text-slate-500 mt-1 update-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Update Jurusan Content -->
+            <!-- END: Notification Gagal Update Kelas Content -->
             <!-- BEGIN: Modal Content -->
             <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -524,7 +536,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i> 
                                 <div class="text-3xl mt-5">Apa kamu yakin?</div>
                                 <div class="text-slate-500 mt-2">
-                                    Apa kamu yakin akan menghapus data jurusan ini? 
+                                    Apa kamu yakin akan menghapus data kelas ini? 
                                     <br>
                                     Data yang terhapus tidak bisa dikembalikan.
                                 </div>
@@ -538,24 +550,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Hapus Jurusan Content -->
+            <!-- BEGIN: Notification Sukses Hapus Kelas Content -->
             <div id="success-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil hapus data jurusan!</div>
+                    <div class="font-medium">Berhasil hapus data kelas!</div>
                     <div class="text-slate-500 mt-1 hapus-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Hapus Jurusan Content -->
-            <!-- BEGIN: Notification Gagal Hapus Jurusan Content -->
+            <!-- END: Notification Sukses Hapus Kelas Content -->
+            <!-- BEGIN: Notification Gagal Hapus Kelas Content -->
             <div id="failed-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal hapus data jurusan!</div>
+                    <div class="font-medium">Gagal hapus data kelas!</div>
                     <div class="text-slate-500 mt-1 hapus-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Hapus Jurusan Content -->
+            <!-- END: Notification Gagal Hapus Kelas Content -->
         </div>
         
         <!-- BEGIN: JS Assets-->
@@ -685,7 +697,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     });
                 })
 
-                // Panggil List Data Jurusan
+                // Panggil List Data Kelas
                 var url = 'http://127.0.0.1:8000/api/master-jurusan/list';
                 fetch(url, {
                     method: 'GET',

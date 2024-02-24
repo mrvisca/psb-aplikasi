@@ -40,11 +40,11 @@ class MasterguruController extends Controller
 
         // Hitunga keseluruhan
         $hitung = MasterGuru::with('user')->whereHas('user', function ($q){
-            return $q->where('role_id','>',2);
+            return $q->where('role_id','>',1);
         })->count();
 
         $masgu = MasterGuru::with('user')->whereHas('user', function ($q){
-            return $q->where('role_id','>',2);
+            return $q->where('role_id','>',1);
         })->where(function ($q) use ($search) {
             if($search != null)
             {

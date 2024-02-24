@@ -2,58 +2,51 @@
 
 namespace App\Imports;
 
+use App\Models\MasterJurusan;
+use App\Models\MasterMapel;
 use App\Models\MasterSiswa;
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class MasterSiswaImport implements ToCollection, WithHeadingRow
+class MastersiswaImport implements ToCollection, WithHeadingRow
 {
+    /**
+     * @param Collection $collection
+     */
     public function rules(): array
     {
         return [
             'nis' => 'required',
-            'nama' => 'required',
-            'jurusan' => 'required',
-            'jenkel' => 'required',
+            'nama_siswa' => 'required',
+            'email' => 'required|string|email|max:255|unique:master_siswas',
             'kelas' => 'required',
+            'jenkel' => 'required',
+            'telpon' => 'required',
+            'periode_angkatan' => 'required',
         ];
     }
-
+ 
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row){
-
-            // cari data role
-            // $find = Role::where('name', 'LIKE', '%'.$row['role'].'%')->first();
-            // if($find)
-            // {
-            //     // $user = new User();
-            //     $siswa = new MasterSiswa();
-            //     // $siswa->user_id = $user->id;
-            //     $siswa->nis = $row['nis'];
-            //     $siswa->name = $row['name'];
-            //     $siswa->jurusan = $row['jurusan'];
-            //     $siswa->jenkel = $row['jenkel'];
-            //     $siswa->kelas = $row['kelas'];
-            //     $siswa->save();
-            // }
-            $user = new User();
-            $user->name = $row['nama'];
-
-            $siswa = new MasterSiswa();
-            $siswa->nis = $row['nis'];
-            $siswa->name = $row['nama'];
-            $siswa->jurusan = $row['jurusan'];
-            $siswa->jenkel = $row['jenkel'];
-            $siswa->kelas = $row['kelas'];
-
-            $user->save();
-            $siswa->save();
-
+        foreach ($rows as $row) {
+            $kelas = MasterJurusan::where('name','LIKE','%'.$row['kelas'].'%')->where('is_active',1)->first();
+            if($kelas)
+            {
+                $siswa = MasterSiswa::updateOrCreate([
+                    'jurusan_id' => $kelas->id,
+                    'name' => $row['name'],
+                    'email' => $row['email'],
+                ],[
+                    'nis' => $row['nis'],
+                    'name' => $row['nama_siswa'],
+                    'email' => $row['email'],
+                    'jurusan_id' => $kelas->id,
+                    'jenkel' => $row['jenkel'],
+                    'telpon' => $row['telpon'],
+                    'periode' => $row['periode'],
+                ]);
+            }
         }
     }
 }

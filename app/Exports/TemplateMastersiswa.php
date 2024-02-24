@@ -9,31 +9,30 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-
-class TemplateMasterSiswaExport implements FromArray, WithHeadings, ShouldAutoSize, WithEvents
+class TemplateMastersiswa implements FromArray, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     function array(): array
     {
-        // $siswa = MasterSiswa::with('user')->whereHas('user', function ($q) {
-        //     return $q->where('role_id','=',1);
-        // })->take(1)->get();
-        // if($siswa->isNotEmpty()) {
-        //     foreach($siswa as $s)
-        //     {
-                
-        //     }
-        // }else{
-        //     $data = [];
-        // }
-        $item['nis'] = '202301';
-        $item['nama'] = 'Mukti';
-        $item['jurusan'] = 'IPA/IPS';
-        $item['jenkel'] = 'laki-laki/perempuan';
-        $item['kelas'] = '10 IPA 1/10 IPA 2';
-        $data[] = $item;
+        $master = MasterSiswa::take(1)->get();
+        if ($master->isNotEmpty()) {
+
+            foreach ($master as $m)
+            {
+                $item['nis'] = $m->nis;
+                $item['nama'] = $m->name;
+                $item['email'] = 'user@mail.com';
+                $item['kelas'] = $m->jurusan->name ?? '';
+                $item['jenkel'] = 'laki-laki/perempuan';
+                $item['telpon'] = '62821********';
+                $item['periode'] = $m->periode;
+                $data[] = $item;
+            }
+        } else {
+            $data = [];
+        }
 
         return $data;
     }
@@ -42,7 +41,7 @@ class TemplateMasterSiswaExport implements FromArray, WithHeadings, ShouldAutoSi
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $cellRange = 'A1:E1'; // All headers
+                $cellRange = 'A1:G1'; // All headers
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
 
                 $styleArray = [
@@ -59,21 +58,25 @@ class TemplateMasterSiswaExport implements FromArray, WithHeadings, ShouldAutoSi
 
                     'fill' => [
                         'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                        'color' => ['argb' => 'B8860B'],
+                        'color' => ['argb' => 'B8860B']
                     ]
                 ];
+
             },
         ];
+
     }
 
     public function headings(): array
     {
         return [
             'NIS',
-            'Nama',
-            'Jurusan',
-            'Jenkel',
+            'Nama Siswa',
+            'Email',
             'Kelas',
+            'Jenkel',
+            'Telpon',
+            'Periode Angkatan',
         ];
     }
 }

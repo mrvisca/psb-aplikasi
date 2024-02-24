@@ -9,14 +9,10 @@ class MasterSiswa extends Model
 {
     use HasFactory;
     protected $table = 'master_siswas';
-
-    public function user()
-    {
-        return $this->belongsTo(User::class,'user_id');
-    }
+    protected $fillable = ['jurusan_id','name','kelompok','type'];
 
     public function jurusan()
     {
-        return $this->belongTo(MasterJurusan::class, 'jurusan_id');
+        return $this->belongsTo(MasterJurusan::class, 'jurusan_id');
     }
 }

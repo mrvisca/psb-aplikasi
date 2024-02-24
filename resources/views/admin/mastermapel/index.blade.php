@@ -1061,6 +1061,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     });
                 });
 
+                jQuery('.modal-import').click(function() {
+                    // Show the modal
+                    const el = document.querySelector("#header-import-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show(); 
+                })
+
                 // Fungsi button import
                 jQuery('.btn-import').click(function() {
                     // Get form data

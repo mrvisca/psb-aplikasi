@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\MasterSiswaExport;
-use App\Exports\TemplateMasterSiswaExport;
-use App\Imports\MasterSiswaImport;
+use App\Exports\MastersiswaExport;
+use App\Exports\TemplateMastersiswa;
+use App\Imports\MastersiswaImport;
+use App\Models\MasterJurusan;
 use App\Models\MasterSiswa;
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -24,12 +21,12 @@ class MastersiswaController extends Controller
     public function listSiswa(Request $request)
     {
         $columns = [
-            0 => 'id',
-            1 => 'nis',
-            2 => 'user_id',
+            0 => 'nis',
+            1 => 'name',
+            2 => 'jenkel',
             3 => 'jurusan_id',
-            4 => 'jenkel',
-            5 => 'kelas',
+            4 => 'email',
+            5 => 'telpon',
         ];
 
         $start = $request->start;
@@ -39,20 +36,12 @@ class MastersiswaController extends Controller
         $search = $request->input('search')['value'];
 
         // Hitunga keseluruhan
-        $hitung = MasterSiswa::with('user')->whereHas('user', function ($q){
-            return $q->where('role_id','==',1);
-        })->count();
+        $hitung = MasterSiswa::count();
 
-        $siswa = MasterSiswa::with('user')->whereHas('user', function ($q){
-            return $q->where('role_id','==',1);
-        })->where(function ($q) use ($search) {
+        $siswa = MasterSiswa::where(function ($q) use ($search) {
             if($search != null)
             {
-                return $q->where('nis','ILIKE','%'.$search.'%')->orWhere(function ($queri) use ($search) {
-                    return $queri->whereHas('user', function ($kueri) use ($search) {
-                        return $kueri->where('name','ILIKE','%'.$search.'%');
-                    });
-                })->orwhere('nis', $search);
+                return $q->where('nis','LIKE','%'.$search.'%')->orWhere('name','LIKE','%'.$search.'%')->orwhere('email','LIKE','%'.$search.'%')->orWhere('telpon',$search);
             }
         })->orderby($orderColumn, $dir)->skip($start)->take($limit)->get();
         $data = array();
@@ -60,12 +49,13 @@ class MastersiswaController extends Controller
         {
             $item['id'] = $s->id;
             $item['nis'] = $s->nis;
-            $item['user_id'] = $s->user_id;
-            $item['user_name'] = $s->user->name ?? '';
-            $item['jurusan'] = $s->jurusan;
+            $item['name'] = $s->name;
+            $item['email'] = $s->email;
+            $item['jurusan_id'] = $s->jurusan_id;
             $item['jurusan_name'] = $s->jurusan->name ?? '';
             $item['jenkel'] = $s->jenkel;
-            $item['kelas'] = $s->kelas;
+            $item['telpon'] = $s->telpon;
+            $item['periode'] = $s->periode;
             $data[] = $item;
         }
 
@@ -77,141 +67,140 @@ class MastersiswaController extends Controller
         ], 200);
     }
 
-    public function supportRole()
+    public function createUser(Request $request)
     {
-        $user = Role::where('id','!=',1)->where('id','!=',2)->orderby('id','desc')->get();
+        //set validation
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|string|email|max:255|unique:master_siswas',
+            'nis' => 'required',
+            'jurusan_id' => 'required',
+            'jenkel' => 'required',
+            'telpon' => 'required',
+            'periode' => 'required',
+        ]);
+
+        //response error validation
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
+
+        $siswa = new MasterSiswa();
+        $siswa->nis = $request->nis;
+        $siswa->name = $request->name;
+        $siswa->email = $request->email;
+        $siswa->jurusan_id = $request->jurusan_id;
+        $siswa->jenkel = $request->jenkel;
+        $siswa->telpon = $request->telpon;
+        $siswa->periode = $request->periode;
+        $siswa->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil menambahkan data siswa baru',
+        ],201);
+    }
+
+    public function listJurusan()
+    {
+        $kelas = MasterJurusan::all();
         $data = array();
-        foreach($user as $u)
+        foreach($kelas as $k)
         {
-            $item['id'] = $u->id;
-            $item['name'] = $u->name;
+            $item['id'] = $k->id;
+            $item['name'] = $k->name;
+            $item['kode'] = $k->kode;
             $data[] = $item;
         }
 
         return response()->json([
             'data' => $data,
-        ], 200);
+        ],200);
     }
 
-    public function addMaster(Request $request)
+    public function updateData(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'nis' => 'required',
-            'name' => 'required',
-            'jurusan_id' => 'required',
-            'jenkel' => 'required',
-            'kelas' => 'required',
-        ]);
-
-        if($validator->fails())
+        $find = MasterSiswa::where('id',$id)->first();
+        if($find)
         {
-            return response()->json($validator->errors(), 400);
-        }
+            $request->nis != null ? $find->nis = $request->nis : true;
+            $request->name != null ? $find->name = $request->name : true;
+            $request->email != null ? $find->email = $request->email : true;
+            $request->jurusan_id != null ? $find->jurusan_id = $request->jurusan_id : true;
+            $request->jenkel != null ? $find->jenkel = $request->jenkel : true;
+            $request->telpon != null ? $find->telpon = $request->telpon : true;
+            $request->periode != null ? $find->periode = $request->periode : true;
+            $find->save();
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->save();
-
-        $siswa = new MasterSiswa();
-        // $siswa->user_id = $user->id;
-        $siswa->nis = $request->nis;
-        $siswa->name = $request->name;
-        $siswa->jurusan_id = $request->jurusan;
-        $siswa->jenkel = $request->jenkel;
-        $siswa->kelas = $request->kelas;
-        $siswa->save();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Berhasil membuat data master siswa baru',
-        ], 201);
-    }
-
-    public function updateSiswa(Request $request, $id)
-    {
-        $find = MasterSiswa::where('id', $id)->first();
-        if(!$find)
-        {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil update data master siswa',
+            ],201);
+        }else{
             return response()->json([
                 'success' => false,
-                'message' => 'Update data gagal, data siswa tidak ditemukan',
-            ], 400);
-        }else{
-            $find->nis = $request->nis;
-            $find->name = $request->name;
-            $find->jurusan = $request->jurusan;
-            $find->jenkel = $request->jenkel;
-            $find->kelas = $request->kelas;
+                'message' => 'Update data siswa gagal, data tidak ditemukan',
+            ],400);
         }
     }
 
-    public function deleteSiswa(Request $request, $id)
+    public function hapus($id)
     {
-        $find = MasterSiswa::where('id', $id)->first();
-        if(!$find)
+        $hapus = MasterSiswa::where('id',$id)->delete();
+        if($hapus)
         {
             return response()->json([
-                'success' => false,
-                'message' => 'Gagal hapus data siswa, data tidak ditemukan',
-            ], 400);
+                'success' => true,
+                'message' => 'Hapus data master siswa berhasil',
+            ],201);
         }else{
-            $hapus = MasterSiswa::where('id', $find->id)->delete();
-
-            if($hapus)
-            {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Berhasil menghapus data siswa',
-                ], 201);
-            }else{
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Terjadi kesalahan saat menghapus master siswa',
-                ], 400);
-            }
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan saat menghapus data master siswa',
+            ],400);
         }
     }
-
+    
     public function exportData()
     {
-        $export = MasterSiswa::with('user')->whereHas('user', function ($q) {
-            return $q->where('role_id', '==', 1);
-        })->orderby('id', 'desc')->get();
+        $master = MasterSiswa::all();
         $data = array();
-        foreach($export as $e)
+        foreach($master as $m)
         {
-            $item['nis'] = $e->nis;
-            $item['name'] = $e->user->name ?? '';
-            $item['jurusan'] = $e->jurusan->name ?? '';
-            $item['jenkel'] = $e->jenkel;
-            $item['kelas'] = $e->kelas;
+            $item['id'] = $m->id;
+            $item['nis'] = $m->nis;
+            $item['name'] = $m->name;
+            $item['email'] = $m->email;
+            $item['kelas'] = $m->jurusan->name ?? '';
+            $item['jenkel'] = $m->jenkel;
+            $item['telpon'] = $m->telpon;
+            $item['periode'] = $m->periode;
             $data[] = $item;
         }
 
-        return Excel::download(new MasterSiswaExport($data), 'Master-Siswa-Export.xlsx');
+        return Excel::download(new MastersiswaExport($data), 'Master-Siswa-Export.xlsx');
     }
 
     public function template()
     {
-        return Excel::download(new TemplateMasterSiswaExport(), 'Template-Master-Siswa.xlsx');
+        return Excel::download(new TemplateMastersiswa(), 'Template-Master-Guru.xlsx');
     }
 
-    public function importData(Request $request)
+    public function import(Request $request)
     {
-        //validasi import
+        // Lakukan validasi data impor
         $request->validate([
-            'excel' => 'required|mimes:xlsx, xls',
+            'excel' => 'required|mimes:xls,xlsx',
         ]);
 
-        //proses import
+        // Proses data impor
         $file = $request->file('excel');
 
-        Excel::import(new MasterSiswaImport, $file);
-
+        Excel::import(new MastersiswaImport, $file);
 
         return response()->json([
             'success' => true,
-            'message' => 'Berhasil mengimport data master siswa',
-        ], 201);
+            'message' => 'Berhasil melakukan import data master guru'
+        ],201);
     }
 }

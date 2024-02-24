@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('jurusan_id')->default(0);
             $table->enum('jenkel',['laki-laki','perempuan'])->default('laki-laki');
-            $table->integer('kelas');
+            $table->string('telpon')->default(0);
             $table->timestamps();
         });
     }

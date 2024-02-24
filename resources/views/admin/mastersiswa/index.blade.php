@@ -405,12 +405,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         <table id="data-table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>NIS</th>
                                     <th>Nama</th>
-                                    <th>Jurusan</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Kelas</th>
+                                    <th>Email</th>
+                                    <th>Telpon</th>
+                                    <th>Periode Angkatan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -437,19 +438,16 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">NIS</label>
-                                <input type="number" class="form-control form-nis" placeholder="NIS" required>
+                                <label for="modal-form-1" class="form-label">NIS (Nomer Induk Siswa)</label>
+                                <input type="number" class="form-control form-nis" placeholder="6114123698" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control form-nama" placeholder="Sukaryo Sulaksono" required>
+                                <input type="text" class="form-control form-nama" placeholder="Shania Indira" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jurusan</label>
-                                <select class="form-select form-jurusan" required>
-                                    <option selected disabled> --- Pilih Jurusan --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                </select>
+                                <label for="modal-form-2" class="form-label">Email</label>
+                                <input type="email" class="form-control form-email" placeholder="shania@mail.com" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
@@ -460,11 +458,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Kelas</label>
-                                <select class="form-select form-kelas" required>
-                                    <option selected disabled> --- Pilih Kelas --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
+                                <label for="modal-form-6" class="form-label">Kelas Siswa</label>
+                                <select class="form-select form-jurusan" required>
+                                    <option selected disabled> --- Pilih Kelas Siswa --- </option>
                                 </select>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-6" class="form-label">Telpon Aktif</label>
+                                <input type="number" class="form-control form-telpon" placeholder="62821********" required>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-6" class="form-label">Periode Angkatan Siswa</label>
+                                <input type="number" class="form-control form-periode" placeholder="2013" required>
                             </div>
                         </div>
                         <!-- END: Modal Body -->
@@ -482,7 +487,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="success-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil membuat data Siswa baru!</div>
+                    <div class="font-medium">Berhasil membuat data siswa baru!</div>
                     <div class="text-slate-500 mt-1 pesan-sukses"></div>
                 </div>
             </div>
@@ -491,7 +496,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="failed-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal membuat data Siswa baru!</div>
+                    <div class="font-medium">Gagal membuat data siswa baru!</div>
                     <div class="text-slate-500 mt-1 pesan-gagal"></div>
                 </div>
             </div>
@@ -511,20 +516,17 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">NIS</label>
-                                <input type="hidden" class="form-control update-id" placeholder="NIP">
-                                <input type="number" class="form-control update-nis" placeholder="NIS" required>
+                                <label for="modal-form-1" class="form-label">NIS (Nomer Induk Siswa)</label>
+                                <input type="hidden" class="form-control update-id">
+                                <input type="number" class="form-control update-nis" placeholder="6114123698" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control update-nama" placeholder="Sukaryo Sulaksono" required>
+                                <input type="text" class="form-control update-nama" placeholder="Shania Indira" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jurusan</label>
-                                <select class="form-select update-jurusan" required>
-                                    <option selected disabled> --- Pilih Jurusan --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                </select>
+                                <label for="modal-form-2" class="form-label">Email</label>
+                                <input type="email" class="form-control update-email" placeholder="shania@mail.com" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
@@ -535,11 +537,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </select>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Kelas</label>
-                                <select class="form-select update-kelas" required>
-                                    <option selected disabled> --- Pilih Kelas --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
+                                <label for="modal-form-6" class="form-label">Kelas Siswa</label>
+                                <select class="form-select update-jurusan" required>
+                                    <option selected disabled> --- Pilih Kelas Siswa --- </option>
                                 </select>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-2" class="form-label">Telpon Aktif</label>
+                                <input type="number" class="form-control update-telpon" placeholder="62821********" required>
+                            </div>
+                            <div class="col-span-12 sm:col-span-12">
+                                <label for="modal-form-2" class="form-label">Periode Angkatan Siswa</label>
+                                <input type="number" class="form-control update-periode" placeholder="2013" required>
                             </div>
                         </div>
                         <!-- END: Modal Body -->
@@ -557,7 +566,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="success-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil update data Siswa!</div>
+                    <div class="font-medium">Berhasil update data siswa!</div>
                     <div class="text-slate-500 mt-1 update-sukses"></div>
                 </div>
             </div>
@@ -566,7 +575,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="failed-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal update data Siswa!</div>
+                    <div class="font-medium">Gagal update data siswa!</div>
                     <div class="text-slate-500 mt-1 update-gagal"></div>
                 </div>
             </div>
@@ -598,7 +607,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="success-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil hapus data Siswa!</div>
+                    <div class="font-medium">Berhasil hapus data siswa!</div>
                     <div class="text-slate-500 mt-1 hapus-sukses"></div>
                 </div>
             </div>
@@ -607,7 +616,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="failed-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal hapus data Siswa!</div>
+                    <div class="font-medium">Gagal hapus data siswa!</div>
                     <div class="text-slate-500 mt-1 hapus-gagal"></div>
                 </div>
             </div>
@@ -651,7 +660,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="success-import-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil import data Siswa!</div>
+                    <div class="font-medium">Berhasil import data siswa!</div>
                     <div class="text-slate-500 mt-1 import-sukses"></div>
                 </div>
             </div>
@@ -660,7 +669,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div id="failed-import-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal import data Siswa!</div>
+                    <div class="font-medium">Gagal import data siswa!</div>
                     <div class="text-slate-500 mt-1 import-gagal"></div>
                 </div>
             </div>
@@ -729,20 +738,22 @@ License: You must have a valid license purchased only from themeforest(the above
                     modal.show();
                 });
 
-                // Panggil data support role
-                var url = 'http://127.0.0.1:8000/api/master-siswa/data-support/role';
+                // Panggil data support jurusan (kelas)
+                var url = 'http://127.0.0.1:8000/api/master-siswa/data-support/jurusan';
                 fetch(url, {
                     method: 'GET',
                     headers: {
                         'Authorization': 'Bearer ' + token
                     }
                 }).then(response => response.json()).then(data => {
-                    var select = jQuery('.form-role-id');
+                    var select = jQuery('.form-jurusan');
+                    var selectUpdate = jQuery('.update-jurusan');
 
                     // Iterasi melalui data dan membuat objek untuk setiap entri
                     jQuery.each(data, function(index, item) {
                         for (let i = 0; i < item.length; i++) {
-                            select.append('<option value="' + item[i].id + '">' + item[i].name + '</option>');
+                            select.append('<option value="' + item[i].id + '">' + item[i].name + ' (' + item[i].kode + ')</option>');
+                            selectUpdate.append('<option value="' + item[i].id + '">' + item[i].name + ' (' + item[i].kode + ')</option>');
                         }
                     });
                 }).catch(error => {
@@ -756,17 +767,20 @@ License: You must have a valid license purchased only from themeforest(the above
                     // Get form data
                     var nis = jQuery(".form-nis").val();
                     var name = jQuery(".form-nama").val();
-                    var jurusan = jQuery(".form-jurusan").val();
+                    var email = jQuery(".form-email").val();
                     var jenkel = jQuery(".form-jenkel").val();
-                    var kelas = jQuery(".form-kelas").val();
-                    var inp = jQuery('#fileInput')[0];
+                    var jurusan_id = jQuery(".form-jurusan").val();
+                    var telpon = jQuery(".form-telpon").val();
+                    var periode = jQuery(".form-periode").val();
 
                     var formData = new FormData();
                     formData.append('nis', nis);
                     formData.append('name', name);
-                    formData.append('jurusan', jurusan);
+                    formData.append('email', email);
                     formData.append('jenkel', jenkel);
-                    formData.append('kelas', kelas);
+                    formData.append('jurusan_id', jurusan_id);
+                    formData.append('telpon', telpon);
+                    formData.append('periode', periode);
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
@@ -832,18 +846,19 @@ License: You must have a valid license purchased only from themeforest(the above
                         }
                     },
                     "columns": [
-                        { data: 'id', className: 'text-center' },
                         { data: 'nis', className: 'text-center' },
-                        { data: 'user_name', className: 'text-center' },
-                        { data: 'jurusan_name', className: 'text-center' },
+                        { data: 'name', className: 'text-center' },
                         { data: 'jenkel', className: 'text-center' },
-                        { data: 'kelas', className: 'text-center' },
+                        { data: 'jurusan_name', className: 'text-center' },
+                        { data: 'email', className: 'text-center' },
+                        { data: 'telpon', className: 'text-center' },
+                        { data: 'periode', className: 'text-center' },
                         {
                             data: null,
                             render: function (data, type, row) {
 
                                 // Create action buttons
-                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-user_name="' + data.user_name + '" data-nis="' + data.nis + '" data-jenkel="' + data.jenkel + '" data-jurusan_name="' + data.jurusan_name + '" data-kelas="' + data.kelas + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
+                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-nis="' + data.nis + '" data-name="' + data.name + '" data-jenkel="' + data.jenkel + '" data-jurusan_id="' + data.jurusan_id + '" data-email="' + data.email + '" data-telpon="' + data.telpon + '" data-periode="' + data.periode + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
                                 var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
 
                                 // Combine the buttons
@@ -865,19 +880,23 @@ License: You must have a valid license purchased only from themeforest(the above
                     modal.show();
 
                     var id = jQuery(this).attr("data-id");
-                    var user_name = jQuery(this).attr("data-user_name");
-                    var jurusan_name = jQuery(this).attr("data-jurusan_name_");
+                    var name = jQuery(this).attr("data-name");
+                    var nis = jQuery(this).attr("data-nis");
                     var jenkel = jQuery(this).attr("data-jenkel");
-                    var kelas = jQuery(this).attr("data-kelas");
+                    var jurusan_id = jQuery(this).attr("data-jurusan_id");
+                    var email = jQuery(this).attr("data-email");
+                    var telpon = jQuery(this).attr("data-telpon");
+                    var periode = jQuery(this).attr("data-periode");
 
                     // Handle edit action
                     jQuery('.update-id').val(id);
                     jQuery('.update-nis').val(nis);
-                    jQuery('.update-nama').val(user_name).prop('disabled',true);
-                    // jQuery('.update-jurusan').val(jurusan_name).prop('disabled',true);
-                    jQuery('.update-jurusan').val(jurusan_name);
+                    jQuery('.update-nama').val(name);
+                    jQuery('.update-email').val(email);
+                    jQuery('.update-jurusan').val(jurusan_id);
                     jQuery('.update-jenkel').val(jenkel);
-                    jQuery('.update-kelas').val(kelas);
+                    jQuery('.update-telpon').val(telpon);
+                    jQuery('.update-periode').val(periode);
                 });
 
                 // Fungsi button update data
@@ -886,9 +905,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     var id = jQuery('.update-id').val();
                     var name = jQuery('.update-nama').val();
                     var nis = jQuery('.update-nis').val();
-                    var jurusan = jQuery('.update-jurusan').val();
+                    var email = jQuery('.update-email').val();
                     var jenkel = jQuery('.update-jenkel').val();
-                    var kelas = jQuery('.update-kelas').val();
+                    var jurusan_id = jQuery('.update-jurusan').val();
+                    var telpon = jQuery('.update-telpon').val();
+                    var periode = jQuery('.update-periode').val();
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
@@ -900,9 +921,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         data: {
                             name: name,
                             nis: nis,
-                            jurusan: jurusan,
+                            email: email,
                             jenkel: jenkel,
-                            kelas: kelas,
+                            jurusan_id: jurusan_id,
+                            telpon: telpon,
+                            periode: periode,
                         },
                         success: function(response) {
                             // Show the modal
@@ -1007,7 +1030,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 // Fungsi button export
                 jQuery('.btn-export').click(function() {
                     // Akses URL Export data
-                    var linkto = 'http://127.0.0.1:8000/api/master-siswa/export-data';
+                    var linkto = 'http://127.0.0.1:8000/api/master-siswa/export-data/export-xls';
                     jQuery.ajax({
                         xhrFields: {
                             responseType: 'blob',
@@ -1049,7 +1072,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 jQuery('.btn-unduh').click(function() {
                     // Akses URL Export data
-                    var linkto = 'http://127.0.0.1:8000/api/master-siswa/download-template';
+                    var linkto = 'http://127.0.0.1:8000/api/master-siswa/export-data/download-template';
                     jQuery.ajax({
                         xhrFields: {
                             responseType: 'blob',
@@ -1092,7 +1115,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
-                        url: 'http://127.0.0.1:8000/api/master-siswa/import-data',
+                        url: 'http://127.0.0.1:8000/api/master-siswa/import-data/import-xls',
                         type: 'POST',
                         headers: {
                             "Authorization": "Bearer " + token

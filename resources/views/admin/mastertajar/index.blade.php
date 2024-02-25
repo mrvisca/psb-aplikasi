@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="description" content="Tinker admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Tinker Admin Template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
-        <title>Master Guru - Aplikasi PSB</title>
+        <title>Data Tahun Ajar - Aplikasi PSB</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ asset('template/dist/css/app.css') }}" />
         <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('masterguru') }}" class="menu menu--active">
+                        <a href="{{ route('masterguru') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="user-check"></i> </div>
                             <div class="menu__title"> Master Guru </div>
                         </a>
@@ -67,19 +67,19 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('masterpelajaran') }}" class="menu">
-                            <div class="menu__icon"> <i data-lucide="book-open"></i> </div>
-                            <div class="menu__title"> Master Mapel </div>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('masterjurusan') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="menu__title"> Master Kelas </div>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('mastertajar') }}" class="menu">
+                        <a href="{{ route('masterpelajaran') }}" class="menu">
+                            <div class="menu__icon"> <i data-lucide="book-open"></i> </div>
+                            <div class="menu__title"> Master Mapel </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('mastertajar') }}" class="menu menu--active">
                             <div class="menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="menu__title"> Data Tahun Ajar </div>
                         </a>
@@ -160,7 +160,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('masterguru') }}" class="side-menu side-menu--active">
+                        <a href="{{ route('masterguru') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="user-check"></i> </div>
                             <div class="side-menu__title"> Master Guru </div>
                         </a>
@@ -184,7 +184,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('mastertajar') }}" class="side-menu">
+                        <a href="{{ route('mastertajar') }}" class="side-menu side-menu--active">
                             <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="side-menu__title"> Data Tahun Ajar </div>
                         </a>
@@ -259,7 +259,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Aplikasi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Master Guru</li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Tahun Ajar</li>
                         </ol>
                     </nav>
                     <!-- END: Breadcrumb -->
@@ -378,25 +378,10 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Top Bar -->
                 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                     <h2 class="text-lg font-medium mr-auto">
-                        List Master Guru
+                        List Data Tahun Ajar
                     </h2>
                     <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                         <button class="btn btn-primary shadow-md mr-2 btn-tambah">Tambah Data</button>
-                        <div class="dropdown ml-auto sm:ml-0">
-                            <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                                <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
-                            </button>
-                            <div class="dropdown-menu w-40">
-                                <ul class="dropdown-content">
-                                    <li>
-                                        <a href="#" class="dropdown-item modal-import"> <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i> Import Data </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item btn-export"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export Excel </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- BEGIN: HTML Table Data -->
@@ -406,12 +391,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NIP</th>
+                                    <th>Kode</th>
                                     <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Status Pegawai</th>
-                                    <th>Jabatan</th>
-                                    <th>Status</th>
+                                    <th>Tahun</th>
+                                    <th>Kurikulum</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -430,7 +413,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Buat Data Guru
+                                Form Buat Data Tahun Ajar
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -438,53 +421,23 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">NIP</label>
-                                <input type="number" class="form-control form-nip" placeholder="NIP" required>
+                                <label for="modal-form-1" class="form-label">Kode</label>
+                                <input type="text" class="form-control form-kode" placeholder="KKTHN2013" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-2" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control form-name" placeholder="Sukaryo Sulaksono" required>
+                                <label for="modal-form-2" class="form-label">Nama</label>
+                                <input type="text" class="form-control form-name" placeholder="Kurikulum 2013 Tahun Ajar 2024" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-3" class="form-label">Email</label>
-                                <input type="text" class="form-control form-email" placeholder="karyo@mail.com" required>
+                                <label for="modal-form-2" class="form-label">Tahun Ajaran</label>
+                                <input type="number" class="form-control form-tahun" placeholder="2024" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-4" class="form-label">Password</label>
-                                <input type="password" class="form-control form-password" placeholder="********" required>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Jenis Kelamin</label>
-                                <select class="form-select form-jenkel" required>
-                                    <option selected disabled> --- Pilih Jenis Kelamin --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                    <option value="perempuan"> Perempuan </option>
-                                </select>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Status Pegawai</label>
-                                <select class="form-select form-role-id" required>
-                                    <option selected disabled> --- Pilih Status Pegawai --- </option>
-                                </select>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-5" class="form-label">Jabatan</label>
-                                <input type="text" class="form-control form-jabatan" placeholder="Guru Matematika" required>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-5" class="form-label">Nomer Telpon</label>
-                                <input type="number" class="form-control form-telpon" placeholder="62821********" required>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="fileInput" class="form-label">Photo Profil</label>
-                                <input type="file" class="form-control" id="fileInput" required>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Status Akun</label>
-                                <select class="form-select form-status" required>
-                                    <option selected disabled> --- Pilih Status Akun --- </option>
-                                    <option value="1"> Aktif </option>
-                                    <option value="0"> Nonaktif </option>
+                                <label for="modal-form-3" class="form-label">Kurikulum</label>
+                                <select class="form-select form-kurikulum" required>
+                                    <option selected disabled> --- Pilih Kurikulum Tahun Ajar --- </option>
+                                    <option value="KTSP"> KTSP </option>
+                                    <option value="Merdeka"> Merdeka </option>
                                 </select>
                             </div>
                         </div>
@@ -499,24 +452,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Tambah Guru Content -->
+            <!-- BEGIN: Notification Sukses Tambah Tahun Ajar Content -->
             <div id="success-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil membuat data guru baru!</div>
+                    <div class="font-medium">Berhasil membuat data tahun ajar baru!</div>
                     <div class="text-slate-500 mt-1 pesan-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Tambah Guru Content -->
-            <!-- BEGIN: Notification Gagal Tambah Guru Content -->
+            <!-- END: Notification Sukses Tambah Tahun Ajar Content -->
+            <!-- BEGIN: Notification Gagal Tambah Tahun Ajar Content -->
             <div id="failed-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal membuat data guru baru!</div>
+                    <div class="font-medium">Gagal membuat data tahun ajar baru!</div>
                     <div class="text-slate-500 mt-1 pesan-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Tambah Guru Content -->
+            <!-- END: Notification Gagal Tambah Tahun Ajar Content -->
             <!-- BEGIN: Modal Content -->
             <div id="header-update-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -524,7 +477,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Header -->
                         <div class="modal-header">
                             <h2 class="font-medium text-base mr-auto">
-                                Form Edit Data Guru
+                                Form Edit Data Tahun Ajar
                             </h2>
                             <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
                         </div>
@@ -532,40 +485,24 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN: Modal Body -->
                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-1" class="form-label">NIP</label>
-                                <input type="hidden" class="form-control update-id" placeholder="NIP">
-                                <input type="number" class="form-control update-nip" placeholder="NIP">
+                                <label for="modal-form-1" class="form-label">Kode</label>
+                                <input type="hidden" class="form-control update-id">
+                                <input type="text" class="form-control update-kode" placeholder="KKTHN2013">
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama</label>
-                                <input type="text" class="form-control update-nama" placeholder="Suryodikaryo">
+                                <input type="text" class="form-control update-nama" placeholder="Kurikulum 2013 Tahun Ajar 2024">
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-3" class="form-label">Jenis Kelamin</label>
-                                <select class="form-select update-jenkel">
-                                    <option selected disabled> --- Pilih Jenis Kelamin --- </option>
-                                    <option value="laki-laki"> Laki-laki </option>
-                                    <option value="perempuan"> Perempuan </option>
-                                </select>
+                                <label for="modal-form-2" class="form-label">Tahun Ajar</label>
+                                <input type="number" class="form-control update-tahun" placeholder="2024">
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-2" class="form-label">Status Pegawai</label>
-                                <input type="text" class="form-control update-role-id" placeholder="Suryodikaryo">
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-4" class="form-label">Jabatan</label>
-                                <input type="text" class="form-control update-jabatan" placeholder="Guru Matematika">
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-5" class="form-label">Telpon</label>
-                                <input type="number" class="form-control update-telpon" placeholder="62821********">
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-6" class="form-label">Status</label>
-                                <select id="modal-form-6" class="form-select update-status">
-                                    <option selected disabled> --- Pilih Status Akun --- </option>
-                                    <option value="1"> Aktif </option>
-                                    <option value="0"> Nonaktif</option>
+                                <label for="modal-form-3" class="form-label">Kurikulum</label>
+                                <select class="form-select update-kurikulum">
+                                    <option selected disabled> --- Pilih Kurikulum Tahun Ajar --- </option>
+                                    <option value="KTSP"> KTSP </option>
+                                    <option value="Merdeka"> Merdeka </option>
                                 </select>
                             </div>
                         </div>
@@ -580,24 +517,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Update Guru Content -->
+            <!-- BEGIN: Notification Sukses Update Tahun Ajar Content -->
             <div id="success-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil update data guru!</div>
+                    <div class="font-medium">Berhasil update data tahun ajar!</div>
                     <div class="text-slate-500 mt-1 update-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Update Guru Content -->
-            <!-- BEGIN: Notification Gagal Update Guru Content -->
+            <!-- END: Notification Sukses Update Tahun Ajar Content -->
+            <!-- BEGIN: Notification Gagal Update Tahun Ajar Content -->
             <div id="failed-update-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal update data guru!</div>
+                    <div class="font-medium">Gagal update data tahun ajar!</div>
                     <div class="text-slate-500 mt-1 update-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Update Guru Content -->
+            <!-- END: Notification Gagal Update Tahun Ajar Content -->
             <!-- BEGIN: Modal Content -->
             <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
@@ -607,7 +544,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i> 
                                 <div class="text-3xl mt-5">Apa kamu yakin?</div>
                                 <div class="text-slate-500 mt-2">
-                                    Apa kamu yakin akan menghapus data guru ini? 
+                                    Apa kamu yakin akan menghapus data tahun ajar ini? 
                                     <br>
                                     Data yang terhapus tidak bisa dikembalikan.
                                 </div>
@@ -621,77 +558,24 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Hapus Guru Content -->
+            <!-- BEGIN: Notification Sukses Hapus Tahun Ajar Content -->
             <div id="success-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="check-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil hapus data guru!</div>
+                    <div class="font-medium">Berhasil hapus data tahun ajar!</div>
                     <div class="text-slate-500 mt-1 hapus-sukses"></div>
                 </div>
             </div>
-            <!-- END: Notification Sukses Hapus Guru Content -->
-            <!-- BEGIN: Notification Gagal Hapus Guru Content -->
+            <!-- END: Notification Sukses Hapus Tahun Ajar Content -->
+            <!-- BEGIN: Notification Gagal Hapus Tahun Ajar Content -->
             <div id="failed-hapus-notification-content" class="toastify-content hidden flex">
                 <i class="text-success" data-lucide="x-circle"></i> 
                 <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal hapus data guru!</div>
+                    <div class="font-medium">Gagal hapus data tahun ajar!</div>
                     <div class="text-slate-500 mt-1 hapus-gagal"></div>
                 </div>
             </div>
-            <!-- END: Notification Gagal Hapus Guru Content -->
-            <!-- BEGIN: Modal Content -->
-            <div id="header-import-footer-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- BEGIN: Modal Header -->
-                        <div class="modal-header">
-                            <h2 class="font-medium text-base mr-auto">
-                                Form Import Data Guru
-                            </h2>
-                            <a data-tw-dismiss="modal" href="javascript:;"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
-                        </div>
-                        <!-- END: Modal Header -->
-                        <!-- BEGIN: Modal Body -->
-                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                            <div class="col-span-12 sm:col-span-6">
-                                <label for="modal-form-1" class="form-label">Unduh Template</label>
-                                <br/>
-                                <button type="button" class="btn btn-primary w-20 btn-unduh">Unduh</button>
-                            </div>
-                            <div class="col-span-12 sm:col-span-12">
-                                <label for="fileInput" class="form-label">File Excel</label>
-                                <input type="file" class="form-control" id="fileInput1" required>
-                            </div>
-                        </div>
-                        <!-- END: Modal Body -->
-                        <!-- BEGIN: Modal Footer -->
-                        <div class="modal-footer">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Batal</button>
-                            <button type="button" class="btn btn-primary w-20 btn-import">Import</button>
-                        </div>
-                        <!-- END: Modal Footer -->
-                    </div>
-                </div>
-            </div>
-            <!-- END: Modal Content -->
-            <!-- BEGIN: Notification Sukses Import Guru Content -->
-            <div id="success-import-notification-content" class="toastify-content hidden flex">
-                <i class="text-success" data-lucide="check-circle"></i> 
-                <div class="ml-4 mr-4">
-                    <div class="font-medium">Berhasil import data guru!</div>
-                    <div class="text-slate-500 mt-1 import-sukses"></div>
-                </div>
-            </div>
-            <!-- END: Notification Sukses Import Guru Content -->
-            <!-- BEGIN: Notification Gagal Import Guru Content -->
-            <div id="failed-import-notification-content" class="toastify-content hidden flex">
-                <i class="text-success" data-lucide="x-circle"></i> 
-                <div class="ml-4 mr-4">
-                    <div class="font-medium">Gagal import data guru!</div>
-                    <div class="text-slate-500 mt-1 import-gagal"></div>
-                </div>
-            </div>
-            <!-- END: Notification Gagal Import Guru Content -->
+            <!-- END: Notification Gagal Hapus Tahun Ajar Content -->
         </div>
         
         <!-- BEGIN: JS Assets-->
@@ -756,451 +640,25 @@ License: You must have a valid license purchased only from themeforest(the above
                     modal.show();
                 });
 
-                // Panggil data support role
-                var url = 'http://127.0.0.1:8000/api/master-guru/data-support/role';
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).then(response => response.json()).then(data => {
-                    var select = jQuery('.form-role-id');
-
-                    // Iterasi melalui data dan membuat objek untuk setiap entri
-                    jQuery.each(data, function(index, item) {
-                        for (let i = 0; i < item.length; i++) {
-                            select.append('<option value="' + item[i].id + '">' + item[i].name + '</option>');
-                        }
-                    });
-                }).catch(error => {
-                    console.error('Error:', error);
-                });
-
                 jQuery('.btn-simpan').click(function() {
                     // Show the modal
                     event.preventDefault(); // Prevent default form submission
 
                     // Get form data
-                    var nip = jQuery(".form-nip").val();
+                    var kode = jQuery(".form-kode").val();
                     var name = jQuery(".form-name").val();
-                    var email = jQuery(".form-email").val();
-                    var password = jQuery(".form-password").val();
-                    var jenkel = jQuery(".form-jenkel").val();
-                    var role_id = jQuery(".form-role-id").val();
-                    var jabatan = jQuery(".form-jabatan").val();
-                    var telpon = jQuery(".form-telpon").val();
-                    var status = jQuery(".form-status").val();
-                    var inp = jQuery('#fileInput')[0];
-                    var foto = inp.files[0];
-
-                    if (foto) {
-                        var formData = new FormData();
-                        formData.append('nip', nip);
-                        formData.append('name', name);
-                        formData.append('email', email);
-                        formData.append('password', password);
-                        formData.append('jenkel', jenkel);
-                        formData.append('role_id', role_id);
-                        formData.append('jabatan', jabatan);
-                        formData.append('telpon', telpon);
-                        formData.append('status', status);
-                        formData.append('photo', foto);
-
-                        // Kirim permintaan pembaruan produk ke API
-                        jQuery.ajax({
-                            url: 'http://127.0.0.1:8000/api/master-guru/tambah-data',
-                            type: 'POST',
-                            headers: {
-                                "Authorization": "Bearer " + token
-                            },
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            success: function(response) {
-                                // Show the modal
-                                jQuery('.pesan-sukses').text(response.message);
-                                Toastify({
-                                    node: $("#success-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 3000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000); // 3000 milliseconds = 3 seconds
-                            },
-                            error: function(xhr, status, error) {
-                                // Show the modal
-                                jQuery('.pesan-gagal').text(error);
-                                Toastify({
-                                    node: $("#failed-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 5000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 5000); // 3000 milliseconds = 3 seconds
-                            }
-                        });
-                    }else{
-                        var formData = new FormData();
-                        formData.append('nip', nip);
-                        formData.append('name', name);
-                        formData.append('email', email);
-                        formData.append('password', password);
-                        formData.append('jenkel', jenkel);
-                        formData.append('role_id', role_id);
-                        formData.append('jabatan', jabatan);
-                        formData.append('telpon', telpon);
-                        formData.append('status', status);
-                        formData.append('photo', '');
-
-                        // Kirim permintaan pembaruan produk ke API
-                        jQuery.ajax({
-                            url: 'http://127.0.0.1:8000/api/master-guru/tambah-data',
-                            type: 'POST',
-                            headers: {
-                                "Authorization": "Bearer " + token
-                            },
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            success: function(response) {
-                                // Show the modal
-                                jQuery('.pesan-sukses').text(response.message);
-                                Toastify({
-                                    node: $("#success-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 3000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000); // 3000 milliseconds = 3 seconds
-                            },
-                            error: function(xhr, status, error) {
-                                // Show the modal
-                                jQuery('.pesan-gagal').text(error);
-                                Toastify({
-                                    node: $("#failed-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 5000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 5000); // 3000 milliseconds = 3 seconds
-                            }
-                        });
-                    }
-                })
-
-                // Datatable list Cabang
-                jQuery('#data-table').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "http://127.0.0.1:8000/api/master-guru/list",
-                        "dataType": "json",
-                        "type": "POST",
-                        "headers": {
-                            'Authorization': 'Bearer ' + token
-                        }
-                    },
-                    "columns": [
-                        { data: 'id', className: 'text-center' },
-                        { data: 'nip', className: 'text-center' },
-                        { data: 'user_name', className: 'text-center' },
-                        { data: 'jenkel', className: 'text-center' },
-                        { data: 'role_name', className: 'text-center' },
-                        { data: 'jabatan', className: 'text-center' },
-                        { data: 'setatus', className: 'text-center' },
-                        {
-                            data: null,
-                            render: function (data, type, row) {
-
-                                // Create action buttons
-                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-user_name="' + data.user_name + '" data-nip="' + data.nip + '" data-jenkel="' + data.jenkel + '" data-role_name="' + data.role_name + '" data-jabatan="' + data.jabatan + '" data-status="' + data.status + '" data-telpon="' + data.telpon + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
-                                var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
-
-                                // Combine the buttons
-                                var actions = editBtn + ' || ' + deleteBtn;
-                                return actions;
-                            }
-                        }
-                    ],
-                    "drawCallback": function(settings) {
-                        feather.replace();
-                    }
-                });
-
-                // Passing data list row ke dalam modal update
-                jQuery('#data-table').on('click', '.btn-edit', function() {
-                    // Show the modal
-                    const el = document.querySelector("#header-update-footer-modal-preview");
-                    const modal = tailwind.Modal.getOrCreateInstance(el);
-                    modal.show();
-
-                    var id = jQuery(this).attr("data-id");
-                    var user_name = jQuery(this).attr("data-user_name");
-                    var nip = jQuery(this).attr("data-nip");
-                    var jenkel = jQuery(this).attr("data-jenkel");
-                    var role_name = jQuery(this).attr("data-role_name");
-                    var jabatan = jQuery(this).attr("data-jabatan");
-                    var status = jQuery(this).attr("data-status");
-                    var telpon = jQuery(this).attr("data-telpon");
-
-                    // Handle edit action
-                    jQuery('.update-id').val(id);
-                    jQuery('.update-nip').val(nip);
-                    jQuery('.update-nama').val(user_name).prop('disabled',true);
-                    jQuery('.update-jenkel').val(jenkel);
-                    jQuery('.update-role-id').val(role_name).prop('disabled',true);
-                    jQuery('.update-jabatan').val(jabatan);
-                    jQuery('.update-status').val(status);
-                    jQuery('.update-telpon').val(telpon);
-                });
-
-                // Fungsi button update data
-                jQuery('.btn-update').click(function() {
-                    // Ajax update
-                    var id = jQuery('.update-id').val();
-                    var name = jQuery('.update-nama').val();
-                    var nip = jQuery('.update-nip').val();
-                    var jenkel = jQuery('.update-jenkel').val();
-                    var jabatan = jQuery('.update-jabatan').val();
-                    var status = jQuery('.update-status').val();
-                    var telpon = jQuery('.update-telpon').val();
-
-                    // Kirim permintaan pembaruan produk ke API
-                    jQuery.ajax({
-                        url: '{{ env('BASE_URL') }}api/master-guru/update-data/' + id,
-                        type: "PUT",
-                        beforeSend: function(xhr) {
-                            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                        },
-                        data: {
-                            name: name,
-                            nip: nip,
-                            jenkel: jenkel,
-                            jabatan: jabatan,
-                            status: status,
-                            telpon: telpon,
-                        },
-                        success: function(response) {
-                            // Show the modal
-                            jQuery('.update-sukses').text(response.message);
-                            Toastify({
-                                node: $("#success-update-notification-content")
-                                    .clone()
-                                    .removeClass("hidden")[0],
-                                duration: 3000,
-                                newWindow: true,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                stopOnFocus: true,
-                            }).showToast();
-
-                            setTimeout(function() {
-                                location.reload();
-                            }, 3000); // 3000 milliseconds = 3 seconds
-                        },
-                        error: function(xhr, status, error) {
-                            // Show the modal
-                            jQuery('.update-gagal').text(response.message);
-                            Toastify({
-                                node: $("#failed-update-notification-content")
-                                    .clone()
-                                    .removeClass("hidden")[0],
-                                duration: 5000,
-                                newWindow: true,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                stopOnFocus: true,
-                            }).showToast();
-
-                            setTimeout(function() {
-                                location.reload();
-                            }, 5000); // 3000 milliseconds = 3 seconds
-                        }
-                    });
-                });
-
-                // Fungsi Tombol hapus
-                jQuery('#data-table').on('click', '.btn-delete', function() {
-                    var id = jQuery(this).attr("data-id");
-
-                    // Show the modal
-                    const el = document.querySelector("#delete-modal-preview");
-                    const modal = tailwind.Modal.getOrCreateInstance(el);
-                    modal.show();
-
-                    jQuery('.btn-iya').click(function() {
-                        // Ajax delete Api
-                        jQuery.ajax({
-                            url: '{{ env('BASE_URL') }}api/master-guru/hapus-data/' + id,
-                            type: 'DELETE',
-                            headers: {
-                                'Authorization': 'Bearer ' + token
-                            },
-                            success: function(response) {
-                                // Show the modal
-                                jQuery('.hapus-sukses').text(response.message);
-                                Toastify({
-                                    node: $("#success-hapus-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 3000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000); // 3000 milliseconds = 3 seconds
-                            },
-                            error: function(xhr, status, error) {
-                                // Show the modal
-                                jQuery('.hapus-gagal').text(error);
-                                Toastify({
-                                    node: $("#failed-hapus-notification-content")
-                                        .clone()
-                                        .removeClass("hidden")[0],
-                                    duration: 5000,
-                                    newWindow: true,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    stopOnFocus: true,
-                                }).showToast();
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 5000); // 3000 milliseconds = 3 seconds
-                            }
-                        });
-                    });
-                });
-
-                // Fungsi button export
-                jQuery('.btn-export').click(function() {
-                    // Akses URL Export data
-                    var linkto = 'http://127.0.0.1:8000/api/master-guru/export-data';
-                    jQuery.ajax({
-                        xhrFields: {
-                            responseType: 'blob',
-                        },
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        },
-                        type: 'GET',
-                        url: linkto,
-                        success: function(result, status, xhr) {
-
-                            var disposition = xhr.getResponseHeader('content-disposition');
-                            var matches = /"([^"]*)"/.exec(disposition);
-                            var filename = (matches != null && matches[1] ? matches[1] : 'Export-Master-Guru.xlsx');
-
-                            // The actual download
-                            var blob = new Blob([result], {
-                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                            });
-                            var link = document.createElement('a');
-                            link.href = window.URL.createObjectURL(blob);
-                            link.download = filename;
-
-                            document.body.appendChild(link);
-
-                            link.click();
-                            document.body.removeChild(link);
-                        }
-                    });
-                });
-
-                // Menampilkan modal export
-                jQuery('.modal-import').click(function() {
-                    // Show the modal
-                    const el = document.querySelector("#header-import-footer-modal-preview");
-                    const modal = tailwind.Modal.getOrCreateInstance(el);
-                    modal.show(); 
-                });
-
-                jQuery('.btn-unduh').click(function() {
-                    // Akses URL Export data
-                    var linkto = 'http://127.0.0.1:8000/api/master-guru/download-template';
-                    jQuery.ajax({
-                        xhrFields: {
-                            responseType: 'blob',
-                        },
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        },
-                        type: 'GET',
-                        url: linkto,
-                        success: function(result, status, xhr) {
-
-                            var disposition = xhr.getResponseHeader('content-disposition');
-                            var matches = /"([^"]*)"/.exec(disposition);
-                            var filename = (matches != null && matches[1] ? matches[1] : 'Template-Master-Guru.xlsx');
-
-                            // The actual download
-                            var blob = new Blob([result], {
-                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                            });
-                            var link = document.createElement('a');
-                            link.href = window.URL.createObjectURL(blob);
-                            link.download = filename;
-
-                            document.body.appendChild(link);
-
-                            link.click();
-                            document.body.removeChild(link);
-                        }
-                    });
-                });
-
-                // Fungsi button import
-                jQuery('.btn-import').click(function() {
-                    // Get form data
-                    var inp = jQuery('#fileInput1')[0];
-                    var foto = inp.files[0];
+                    var tahun = jQuery(".form-tahun").val();
+                    var kurikulum = jQuery(".form-kurikulum").val();
 
                     var formData = new FormData();
-                    formData.append('excel', foto);
+                    formData.append('kode', kode);
+                    formData.append('name', name);
+                    formData.append('tahun', tahun);
+                    formData.append('kurikulum', kurikulum);
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
-                        url: 'http://127.0.0.1:8000/api/master-guru/import-data',
+                        url: 'http://127.0.0.1:8000/api/master-tahun-ajar/tambah-data',
                         type: 'POST',
                         headers: {
                             "Authorization": "Bearer " + token
@@ -1210,9 +668,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         contentType: false,
                         success: function(response) {
                             // Show the modal
-                            jQuery('.import-sukses').text(response.message);
+                            jQuery('.pesan-sukses').text(response.message);
                             Toastify({
-                                node: $("#success-import-notification-content")
+                                node: $("#success-notification-content")
                                     .clone()
                                     .removeClass("hidden")[0],
                                 duration: 3000,
@@ -1229,9 +687,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         },
                         error: function(xhr, status, error) {
                             // Show the modal
-                            jQuery('.import-gagal').text(error);
+                            jQuery('.pesan-gagal').text(error);
                             Toastify({
-                                node: $("#failed-import-notification-content")
+                                node: $("#failed-notification-content")
                                     .clone()
                                     .removeClass("hidden")[0],
                                 duration: 5000,
@@ -1243,11 +701,215 @@ License: You must have a valid license purchased only from themeforest(the above
                             }).showToast();
 
                             setTimeout(function() {
-                                // location.reload();
+                                location.reload();
                             }, 5000); // 3000 milliseconds = 3 seconds
                         }
-                    }); 
+                    });
                 })
+
+                // Panggil List Data Kelas
+                var url = 'http://127.0.0.1:8000/api/master-tahun-ajar/list';
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                }).then(response => response.json()).then(data => {
+                        // Panggil fungsi untuk mengisi data ke dalam tbody DataTable
+                        populateDataTable(data);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+                function populateDataTable(data) {
+                    var tableBody = jQuery("#data-body");
+
+                    // Bersihkan isi tbody sebelum mengisi dengan data baru
+                    tableBody.empty();
+
+                    var rowDataArray = []; // Variabel untuk menyimpan objek baris
+
+                    // Perulangan menggunakan jQuery.each()
+                    jQuery.each(data, function(index, item) {
+                        for (let i = 0; i < item.length; i++) {
+                            // // Create an object with the desired properties
+                            var rowData = {
+                                id: item[i].id,
+                                kode: item[i].kode,
+                                name: item[i].name,
+                                tahun: item[i].tahun,
+                                kurikulum: item[i].kurikulum,
+                            };
+
+                            // Push the object to the data array
+                            rowDataArray.push(rowData);
+                        }
+                    });
+
+                    var dataTable = jQuery('#data-table').DataTable();
+                    if (dataTable) {
+                        // Destroy DataTable
+                        dataTable.destroy();
+                    }
+
+                    // Initialize DataTable
+                    var table = jQuery('#data-table').DataTable({
+                        data: rowDataArray,
+                        columns: [
+                            { data: 'id', className: 'text-center' },
+                            { data: 'kode', className: 'text-center' },
+                            { data: 'name', className: 'text-center' },
+                            { data: 'tahun', className: 'text-center' },
+                            { data: 'kurikulum', className: 'text-center' },
+                            {
+                                data: null,
+                                render: function (data, type, row) {
+
+                                    // Create action buttons
+                                    var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-kode="' + data.kode + '" data-name="' + data.name + '" data-tahun="' + data.tahun + '" data-kurikulum="' + data.kurikulum + '"><i data-feather="edit" class="w-4 h-4"></i></button>';
+                                    var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4"></i></button>';
+
+                                    // Combine the buttons
+                                    var actions = editBtn + ' || ' + deleteBtn;
+                                    return actions;
+                                }
+                            }
+                        ],
+                        "drawCallback": function( settings ) {
+                            feather.replace();
+                        }
+                    });
+
+                    // Handle button click events
+                    jQuery('#data-table').on('click', '.btn-edit', function() {
+                        // Show Modal
+                        const el = document.querySelector("#header-update-footer-modal-preview");
+                        const modal = tailwind.Modal.getOrCreateInstance(el);
+                        modal.show();
+
+                        var id = jQuery(this).attr("data-id");
+                        var kode = jQuery(this).attr("data-kode");
+                        var name = jQuery(this).attr("data-name");
+                        var tahun = jQuery(this).attr("data-tahun");
+                        var kurikulum = jQuery(this).attr("data-kurikulum");
+
+                        // Handle edit action
+                        jQuery('.update-id').val(id);
+                        jQuery('.update-kode').val(kode);
+                        jQuery('.update-nama').val(name);
+                        jQuery('.update-tahun').val(tahun);
+                        jQuery('.update-kurikulum').val(kurikulum);
+                    });
+
+                    // Tombol Update Admin
+                    jQuery(".update-btn").click(function() {
+                        // Ajax update
+                        var id = jQuery('.update-id').val();
+                        var kode = jQuery('.update-kode').val();
+                        var name = jQuery('.update-nama').val();
+                        var tahun = jQuery('.update-tahun').val();
+                        var kurikulum = jQuery('.update-kurikulum').val();
+
+                        // Kirim permintaan pembaruan produk ke API
+                        jQuery.ajax({
+                            url: 'http://127.0.0.1:8000/api/master-tahun-ajar/update-data/' + id,
+                            type: "PUT",
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                            },
+                            data: {
+                                kode: kode,
+                                name: name,
+                                tahun: tahun,
+                                kurikulum: kurikulum,
+                            },
+                            success: function(response) {
+                                jQuery('.update-sukses').text(response.message);
+                                Toastify({
+                                    node: $("#success-update-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 2000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000); // 3000 milliseconds = 3 seconds
+                            },
+                            error: function(xhr, status, error) {
+                                jQuery('.update-gagal').text(error);
+                                Toastify({
+                                    node: $("#failed-update-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 5000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+                            }
+                        });
+                    });
+
+                    jQuery('#data-table').on('click', '.btn-delete', function() {
+                        var id = jQuery(this).attr("data-id");
+
+                        // Show Modal
+                        const el = document.querySelector("#delete-modal-preview");
+                        const modal = tailwind.Modal.getOrCreateInstance(el);
+                        modal.show();
+                       
+                        jQuery('.hapus-btn').click(function() {
+                            // Ajax delete Api
+                            jQuery.ajax({
+                                url: 'http://127.0.0.1:8000/api/master-tahun-ajar/hapus-data/' + id,
+                                type: 'DELETE',
+                                headers: {
+                                    'Authorization': 'Bearer ' + token
+                                },
+                                success: function(response) {
+                                    jQuery('.hapus-sukses').text(response.message);
+                                    Toastify({
+                                        node: $("#success-hapus-notification-content")
+                                            .clone()
+                                            .removeClass("hidden")[0],
+                                        duration: 2000,
+                                        newWindow: true,
+                                        close: true,
+                                        gravity: "top",
+                                        position: "right",
+                                        stopOnFocus: true,
+                                    }).showToast();
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 3000); // 3000 milliseconds = 3 seconds
+                                },
+                                error: function(xhr, status, error) {
+                                    jQuery('.hapus-gagal').text(error);
+                                    Toastify({
+                                        node: $("failed-hapus-notification-content")
+                                            .clone()
+                                            .removeClass("hidden")[0],
+                                        duration: 5000,
+                                        newWindow: true,
+                                        close: true,
+                                        gravity: "top",
+                                        position: "right",
+                                        stopOnFocus: true,
+                                    }).showToast();
+                                }
+                            });
+                        });
+                    });
+                }
 
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

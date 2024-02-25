@@ -66,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="menu">
+                        <a href="{{ route('mastertajar') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="menu__title"> Data Tahun Ajar </div>
                         </a>
@@ -171,7 +171,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="side-menu">
+                        <a href="{{ route('mastertajar') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="side-menu__title"> Data Tahun Ajar </div>
                         </a>

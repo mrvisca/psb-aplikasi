@@ -6,6 +6,7 @@ use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MastermapelController;
+use App\Http\Controllers\MastertajarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,5 +67,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get("/export-data/export-xls", [MastermapelController::class, 'exportData']);
         Route::get("/export-data/download-template", [MastermapelController::class, 'template']);
         Route::post("/import-data/import-xls", [MastermapelController::class, 'import']);
+    });
+
+    Route::prefix('master-tahun-ajar')->group(function () {
+        Route::get("/list", [MastertajarController::class, 'listTajar']);
+        Route::post("/tambah-data", [MastertajarController::class, 'tambahData']);
+        Route::put("/update-data/{id}", [MastertajarController::class, 'updateData']);
+        Route::delete("/hapus-data/{id}", [MastertajarController::class, 'hapus']);
     });
 });

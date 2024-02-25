@@ -85,7 +85,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="menu">
+                        <a href="{{ route('masterkriteria') }}" class="menu">
                             <div class="menu__icon"> <i data-lucide="list"></i> </div>
                             <div class="menu__title"> Data Kriteria </div>
                         </a>
@@ -190,7 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('comingsoon') }}" class="side-menu">
+                        <a href="{{ route('masterkriteria') }}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
                             <div class="side-menu__title"> Data Kriteria </div>
                         </a>
@@ -394,7 +394,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <th>Kode</th>
                                     <th>Nama</th>
                                     <th>Tahun</th>
-                                    <th>Kurikulum</th>
+                                    <th>Semester</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -433,11 +433,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <input type="number" class="form-control form-tahun" placeholder="2024" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-3" class="form-label">Kurikulum</label>
-                                <select class="form-select form-kurikulum" required>
-                                    <option selected disabled> --- Pilih Kurikulum Tahun Ajar --- </option>
-                                    <option value="KTSP"> KTSP </option>
-                                    <option value="Merdeka"> Merdeka </option>
+                                <label for="modal-form-3" class="form-label">Semester</label>
+                                <select class="form-select form-semester" required>
+                                    <option selected disabled> --- Pilih Semester Ajar --- </option>
+                                    <option value="Ganjil"> Ganjil </option>
+                                    <option value="Genap"> Genap </option>
                                 </select>
                             </div>
                         </div>
@@ -487,22 +487,22 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-1" class="form-label">Kode</label>
                                 <input type="hidden" class="form-control update-id">
-                                <input type="text" class="form-control update-kode" placeholder="KKTHN2013">
+                                <input type="text" class="form-control update-kode" placeholder="KKTHN2013" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Nama</label>
-                                <input type="text" class="form-control update-nama" placeholder="Kurikulum 2013 Tahun Ajar 2024">
+                                <input type="text" class="form-control update-nama" placeholder="Kurikulum 2013 Tahun Ajar 2024" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="modal-form-2" class="form-label">Tahun Ajar</label>
-                                <input type="number" class="form-control update-tahun" placeholder="2024">
+                                <input type="number" class="form-control update-tahun" placeholder="2024" required>
                             </div>
                             <div class="col-span-12 sm:col-span-12">
-                                <label for="modal-form-3" class="form-label">Kurikulum</label>
-                                <select class="form-select update-kurikulum">
-                                    <option selected disabled> --- Pilih Kurikulum Tahun Ajar --- </option>
-                                    <option value="KTSP"> KTSP </option>
-                                    <option value="Merdeka"> Merdeka </option>
+                                <label for="modal-form-3" class="form-label">Semester</label>
+                                <select class="form-select update-semester" required>
+                                    <option selected disabled> --- Pilih Semester Ajar --- </option>
+                                    <option value="Ganjil"> Ganjil </option>
+                                    <option value="Genap"> Genap </option>
                                 </select>
                             </div>
                         </div>
@@ -648,13 +648,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     var kode = jQuery(".form-kode").val();
                     var name = jQuery(".form-name").val();
                     var tahun = jQuery(".form-tahun").val();
-                    var kurikulum = jQuery(".form-kurikulum").val();
+                    var semester = jQuery(".form-semester").val();
 
                     var formData = new FormData();
                     formData.append('kode', kode);
                     formData.append('name', name);
                     formData.append('tahun', tahun);
-                    formData.append('kurikulum', kurikulum);
+                    formData.append('semster', semster);
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
@@ -705,128 +705,143 @@ License: You must have a valid license purchased only from themeforest(the above
                             }, 5000); // 3000 milliseconds = 3 seconds
                         }
                     });
-                })
-
-                // Panggil List Data Kelas
-                var url = 'http://127.0.0.1:8000/api/master-tahun-ajar/list';
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).then(response => response.json()).then(data => {
-                        // Panggil fungsi untuk mengisi data ke dalam tbody DataTable
-                        populateDataTable(data);
-                }).catch(error => {
-                    console.log(error);
                 });
 
-                function populateDataTable(data) {
-                    var tableBody = jQuery("#data-body");
-
-                    // Bersihkan isi tbody sebelum mengisi dengan data baru
-                    tableBody.empty();
-
-                    var rowDataArray = []; // Variabel untuk menyimpan objek baris
-
-                    // Perulangan menggunakan jQuery.each()
-                    jQuery.each(data, function(index, item) {
-                        for (let i = 0; i < item.length; i++) {
-                            // // Create an object with the desired properties
-                            var rowData = {
-                                id: item[i].id,
-                                kode: item[i].kode,
-                                name: item[i].name,
-                                tahun: item[i].tahun,
-                                kurikulum: item[i].kurikulum,
-                            };
-
-                            // Push the object to the data array
-                            rowDataArray.push(rowData);
+                // Datatable list Cabang
+                jQuery('#data-table').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "http://127.0.0.1:8000/api/master-tahun-ajar/list",
+                        "dataType": "json",
+                        "type": "POST",
+                        "headers": {
+                            'Authorization': 'Bearer ' + token
                         }
-                    });
+                    },
+                    "columns": [
+                        { data: 'id', className: 'text-center' },
+                        { data: 'kode', className: 'text-center' },
+                        { data: 'name', className: 'text-center' },
+                        { data: 'tahun', className: 'text-center' },
+                        { data: 'semester', className: 'text-center' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
 
-                    var dataTable = jQuery('#data-table').DataTable();
-                    if (dataTable) {
-                        // Destroy DataTable
-                        dataTable.destroy();
-                    }
+                                // Create action buttons
+                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-kode="' + data.kode + '" data-name="' + data.name + '" data-tahun="' + data.tahun + '" data-semester="' + data.semester + '"><i data-feather="edit" class="w-4 h-4"></i></button>';
+                                var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4"></i></button>';
 
-                    // Initialize DataTable
-                    var table = jQuery('#data-table').DataTable({
-                        data: rowDataArray,
-                        columns: [
-                            { data: 'id', className: 'text-center' },
-                            { data: 'kode', className: 'text-center' },
-                            { data: 'name', className: 'text-center' },
-                            { data: 'tahun', className: 'text-center' },
-                            { data: 'kurikulum', className: 'text-center' },
-                            {
-                                data: null,
-                                render: function (data, type, row) {
-
-                                    // Create action buttons
-                                    var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-kode="' + data.kode + '" data-name="' + data.name + '" data-tahun="' + data.tahun + '" data-kurikulum="' + data.kurikulum + '"><i data-feather="edit" class="w-4 h-4"></i></button>';
-                                    var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4"></i></button>';
-
-                                    // Combine the buttons
-                                    var actions = editBtn + ' || ' + deleteBtn;
-                                    return actions;
-                                }
+                                // Combine the buttons
+                                var actions = editBtn + ' || ' + deleteBtn;
+                                return actions;
                             }
-                        ],
-                        "drawCallback": function( settings ) {
-                            feather.replace();
+                        }
+                    ],
+                    "drawCallback": function(settings) {
+                        feather.replace();
+                    }
+                });
+
+                // Handle button click events
+                jQuery('#data-table').on('click', '.btn-edit', function() {
+                    // Show Modal
+                    const el = document.querySelector("#header-update-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+
+                    var id = jQuery(this).attr("data-id");
+                    var kode = jQuery(this).attr("data-kode");
+                    var name = jQuery(this).attr("data-name");
+                    var tahun = jQuery(this).attr("data-tahun");
+                    var semester = jQuery(this).attr("data-semester");
+
+                    // Handle edit action
+                    jQuery('.update-id').val(id);
+                    jQuery('.update-kode').val(kode);
+                    jQuery('.update-nama').val(name);
+                    jQuery('.update-tahun').val(tahun);
+                    jQuery('.update-semester').val(semester);
+                });
+
+                // Tombol Update Admin
+                jQuery(".update-btn").click(function() {
+                    // Ajax update
+                    var id = jQuery('.update-id').val();
+                    var kode = jQuery('.update-kode').val();
+                    var name = jQuery('.update-nama').val();
+                    var tahun = jQuery('.update-tahun').val();
+                    var semester = jQuery('.update-semester').val();
+
+                    // Kirim permintaan pembaruan produk ke API
+                    jQuery.ajax({
+                        url: 'http://127.0.0.1:8000/api/master-tahun-ajar/update-data/' + id,
+                        type: "PUT",
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                        },
+                        data: {
+                            kode: kode,
+                            name: name,
+                            tahun: tahun,
+                            semester: semester,
+                        },
+                        success: function(response) {
+                            jQuery('.update-sukses').text(response.message);
+                            Toastify({
+                                node: $("#success-update-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 2000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000); // 3000 milliseconds = 3 seconds
+                        },
+                        error: function(xhr, status, error) {
+                            jQuery('.update-gagal').text(error);
+                            Toastify({
+                                node: $("#failed-update-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 5000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
                         }
                     });
+                });
 
-                    // Handle button click events
-                    jQuery('#data-table').on('click', '.btn-edit', function() {
-                        // Show Modal
-                        const el = document.querySelector("#header-update-footer-modal-preview");
-                        const modal = tailwind.Modal.getOrCreateInstance(el);
-                        modal.show();
+                jQuery('#data-table').on('click', '.btn-delete', function() {
+                    var id = jQuery(this).attr("data-id");
 
-                        var id = jQuery(this).attr("data-id");
-                        var kode = jQuery(this).attr("data-kode");
-                        var name = jQuery(this).attr("data-name");
-                        var tahun = jQuery(this).attr("data-tahun");
-                        var kurikulum = jQuery(this).attr("data-kurikulum");
-
-                        // Handle edit action
-                        jQuery('.update-id').val(id);
-                        jQuery('.update-kode').val(kode);
-                        jQuery('.update-nama').val(name);
-                        jQuery('.update-tahun').val(tahun);
-                        jQuery('.update-kurikulum').val(kurikulum);
-                    });
-
-                    // Tombol Update Admin
-                    jQuery(".update-btn").click(function() {
-                        // Ajax update
-                        var id = jQuery('.update-id').val();
-                        var kode = jQuery('.update-kode').val();
-                        var name = jQuery('.update-nama').val();
-                        var tahun = jQuery('.update-tahun').val();
-                        var kurikulum = jQuery('.update-kurikulum').val();
-
-                        // Kirim permintaan pembaruan produk ke API
+                    // Show Modal
+                    const el = document.querySelector("#delete-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+                    
+                    jQuery('.hapus-btn').click(function() {
+                        // Ajax delete Api
                         jQuery.ajax({
-                            url: 'http://127.0.0.1:8000/api/master-tahun-ajar/update-data/' + id,
-                            type: "PUT",
-                            beforeSend: function(xhr) {
-                                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                            },
-                            data: {
-                                kode: kode,
-                                name: name,
-                                tahun: tahun,
-                                kurikulum: kurikulum,
+                            url: 'http://127.0.0.1:8000/api/master-tahun-ajar/hapus-data/' + id,
+                            type: 'DELETE',
+                            headers: {
+                                'Authorization': 'Bearer ' + token
                             },
                             success: function(response) {
-                                jQuery('.update-sukses').text(response.message);
+                                jQuery('.hapus-sukses').text(response.message);
                                 Toastify({
-                                    node: $("#success-update-notification-content")
+                                    node: $("#success-hapus-notification-content")
                                         .clone()
                                         .removeClass("hidden")[0],
                                     duration: 2000,
@@ -842,9 +857,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                 }, 3000); // 3000 milliseconds = 3 seconds
                             },
                             error: function(xhr, status, error) {
-                                jQuery('.update-gagal').text(error);
+                                jQuery('.hapus-gagal').text(error);
                                 Toastify({
-                                    node: $("#failed-update-notification-content")
+                                    node: $("failed-hapus-notification-content")
                                         .clone()
                                         .removeClass("hidden")[0],
                                     duration: 5000,
@@ -857,59 +872,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             }
                         });
                     });
-
-                    jQuery('#data-table').on('click', '.btn-delete', function() {
-                        var id = jQuery(this).attr("data-id");
-
-                        // Show Modal
-                        const el = document.querySelector("#delete-modal-preview");
-                        const modal = tailwind.Modal.getOrCreateInstance(el);
-                        modal.show();
-                       
-                        jQuery('.hapus-btn').click(function() {
-                            // Ajax delete Api
-                            jQuery.ajax({
-                                url: 'http://127.0.0.1:8000/api/master-tahun-ajar/hapus-data/' + id,
-                                type: 'DELETE',
-                                headers: {
-                                    'Authorization': 'Bearer ' + token
-                                },
-                                success: function(response) {
-                                    jQuery('.hapus-sukses').text(response.message);
-                                    Toastify({
-                                        node: $("#success-hapus-notification-content")
-                                            .clone()
-                                            .removeClass("hidden")[0],
-                                        duration: 2000,
-                                        newWindow: true,
-                                        close: true,
-                                        gravity: "top",
-                                        position: "right",
-                                        stopOnFocus: true,
-                                    }).showToast();
-
-                                    setTimeout(function() {
-                                        location.reload();
-                                    }, 3000); // 3000 milliseconds = 3 seconds
-                                },
-                                error: function(xhr, status, error) {
-                                    jQuery('.hapus-gagal').text(error);
-                                    Toastify({
-                                        node: $("failed-hapus-notification-content")
-                                            .clone()
-                                            .removeClass("hidden")[0],
-                                        duration: 5000,
-                                        newWindow: true,
-                                        close: true,
-                                        gravity: "top",
-                                        position: "right",
-                                        stopOnFocus: true,
-                                    }).showToast();
-                                }
-                            });
-                        });
-                    });
-                }
+                });
 
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

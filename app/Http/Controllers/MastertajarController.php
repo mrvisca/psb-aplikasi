@@ -13,9 +13,31 @@ class MastertajarController extends Controller
         return view('admin.mastertajar.index');
     }
 
-    public function listTajar()
+    public function listTajar(Request $request)
     {
-        $tajar = TahunAjar::all();
+        $columns = [
+            0 => 'id',
+            1 => 'kode',
+            2 => 'name',
+            3 => 'tahun',
+            4 => 'semester',
+        ];
+
+        $start = $request->start;
+        $limit = $request->length;
+        $orderColumn = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+        $search = $request->input('search')['value'];
+
+        // Hitunga keseluruhan
+        $hitung = TahunAjar::count();
+
+        $tajar = TahunAjar::where(function ($q) use ($search) {
+            if($search != null)
+            {
+                return $q->where('kode','LIKE','%'.$search.'%')->orWhere('name','LIKE','%'.$search.'%')->orwhere('semester','LIKE','%'.$search.'%')->orWhere('tahun',$search);
+            }
+        })->orderby($orderColumn, $dir)->skip($start)->take($limit)->get();
         $data = array();
         foreach($tajar as $t)
         {
@@ -23,13 +45,16 @@ class MastertajarController extends Controller
             $item['kode'] = $t->kode;
             $item['name'] = $t->name;
             $item['tahun'] = $t->tahun;
-            $item['kurikulum'] = $t->kurikulum;
+            $item['semester'] = $t->semester;
             $data[] = $item;
         }
 
         return response()->json([
+            'draw' => $request->draw,
+            'recordsTotal' => $hitung,
+            'recordsFiltered' => $hitung,
             'data' => $data,
-        ],200);
+        ], 200);
     }
 
     public function tambahData(Request $request)
@@ -39,7 +64,7 @@ class MastertajarController extends Controller
             'kode' => 'required',
             'name' => 'required',
             'tahun' => 'required',
-            'kurikulum' => 'required',
+            'semester' => 'required',
         ]);
 
         //response error validation
@@ -51,7 +76,7 @@ class MastertajarController extends Controller
         $tajar->kode = $request->kode;
         $tajar->name = $request->name;
         $tajar->tahun = $request->tahun;
-        $tajar->kurikulum = $request->kurikulum;
+        $tajar->semester = $request->semester;
         $tajar->save();
 
         return response()->json([
@@ -73,7 +98,7 @@ class MastertajarController extends Controller
             $request->kode != null ? $find->kode = $request->kode : true;
             $request->name != null ? $find->name = $request->name : true;
             $request->tahun != null ? $find->tahun = $request->tahun : true;
-            $request->kurikulum != null ? $find->kurikulum = $request->kurikulum : true;
+            $request->semester != null ? $find->semester = $request->semester : true;
             $find->save();
 
             return response()->json([

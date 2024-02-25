@@ -5,6 +5,7 @@ use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MasterkriteriaController;
 use App\Http\Controllers\MastermapelController;
 use App\Http\Controllers\MastertajarController;
 use Illuminate\Support\Facades\Route;
@@ -70,9 +71,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('master-tahun-ajar')->group(function () {
-        Route::get("/list", [MastertajarController::class, 'listTajar']);
+        Route::post("/list", [MastertajarController::class, 'listTajar']);
         Route::post("/tambah-data", [MastertajarController::class, 'tambahData']);
         Route::put("/update-data/{id}", [MastertajarController::class, 'updateData']);
         Route::delete("/hapus-data/{id}", [MastertajarController::class, 'hapus']);
+    });
+
+    Route::prefix('master-kriteria')->group(function () {
+        Route::get("/list", [MasterkriteriaController::class, 'dataKriteria']);
+        Route::post("/tambah-data", [MasterkriteriaController::class, 'tambahKriteria']);
+        Route::put("/update-data/{id}", [MasterkriteriaController::class, 'updateData']);
+        Route::delete("/hapus-data/{id}", [MasterkriteriaController::class, 'hapusData']);
     });
 });

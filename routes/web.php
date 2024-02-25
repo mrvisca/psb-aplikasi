@@ -5,6 +5,7 @@ use App\Http\Controllers\MasterguruController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MasterkriteriaController;
 use App\Http\Controllers\MastermapelController;
 use App\Http\Controllers\MastertajarController;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,4 @@ Route::get('/aplikasi/master-siswa',[MastersiswaController::class, 'index'])->na
 Route::get('/aplikasi/master-jurusan',[JurusanController::class, 'index'])->name('masterjurusan');
 Route::get('/aplikasi/master-mapel',[MastermapelController::class, 'index'])->name('masterpelajaran');
 Route::get('/aplikasi/master-tajar',[MastertajarController::class, 'index'])->name('mastertajar');
+Route::get('/aplikasi/master-kriteria',[MasterkriteriaController::class, 'index'])->name('masterkriteria');

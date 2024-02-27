@@ -13,31 +13,9 @@ class MastertajarController extends Controller
         return view('admin.mastertajar.index');
     }
 
-    public function listTajar(Request $request)
+    public function listTajar()
     {
-        $columns = [
-            0 => 'id',
-            1 => 'kode',
-            2 => 'name',
-            3 => 'tahun',
-            4 => 'semester',
-        ];
-
-        $start = $request->start;
-        $limit = $request->length;
-        $orderColumn = $columns[$request->input('order.0.column')];
-        $dir = $request->input('order.0.dir');
-        $search = $request->input('search')['value'];
-
-        // Hitunga keseluruhan
-        $hitung = TahunAjar::count();
-
-        $tajar = TahunAjar::where(function ($q) use ($search) {
-            if($search != null)
-            {
-                return $q->where('kode','LIKE','%'.$search.'%')->orWhere('name','LIKE','%'.$search.'%')->orwhere('semester','LIKE','%'.$search.'%')->orWhere('tahun',$search);
-            }
-        })->orderby($orderColumn, $dir)->skip($start)->take($limit)->get();
+        $tajar = TahunAjar::all();
         $data = array();
         foreach($tajar as $t)
         {
@@ -50,11 +28,8 @@ class MastertajarController extends Controller
         }
 
         return response()->json([
-            'draw' => $request->draw,
-            'recordsTotal' => $hitung,
-            'recordsFiltered' => $hitung,
             'data' => $data,
-        ], 200);
+        ],200);
     }
 
     public function tambahData(Request $request)

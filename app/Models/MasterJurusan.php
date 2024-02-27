@@ -14,4 +14,9 @@ class MasterJurusan extends Model
     {
         return $this->hasMany(MasterSiswa::class,'jurusan_id')->count();
     }
+
+    public function mapel()
+    {
+        return $this->hasMany(MasterMapel::class,'jurusan_id')->orderby('kelompok','asc');
+    }
 }

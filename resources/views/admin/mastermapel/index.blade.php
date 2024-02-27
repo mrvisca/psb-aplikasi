@@ -823,18 +823,17 @@ License: You must have a valid license purchased only from themeforest(the above
                         { data: 'kelompok', className: 'text-center'},
                         { data: 'type', className: 'text-center'},
                         { data: 'kelas', className: 'text-center'},
-                        { data: 'action', className: 'text-center'},
                         {
                             data: null,
                             render: function(data, type, row) {
 
                                 //create action buttons
                                 var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-name="' + data.name + '" data-kelompok="' + data.kelompok + '" data-type="' + data.type + '" data-kelas="' + data.kelas + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
-                                var deleteBtn = '<button class="btn btn-dangerbtn-delete" data-id="' + data.id +'"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
+                                var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id +'"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
 
                                 //combine the button
                                 var actions = editBtn + ' || ' + deleteBtn;
-                                return action.replace();
+                                return actions.replace();
                             }
                         }
                     ],
@@ -843,11 +842,292 @@ License: You must have a valid license purchased only from themeforest(the above
                     }
                 });
 
+                //update
+                jQuery('#data-table').on('click', '.btn-edit', function() {
+                    //show modal
+                    const el = document.querySelector("#header-update-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstante(el);
+                    modal.show();
+
+                    var id = jQuery(this).attr("data-id");
+                    var name = jQuery(this).attr("data-kelompok");
+                    var type = jQuery(this).attr("data-type");
+                    var kelas = jQuery(this).attr("data-kelas");
+
+                    //handle edit action
+                    jQuery('.update-id').val(id);
+                    jQuery('.update-name').val(name);
+                    jQuery('.update-kelompok').val(kelompok);
+                    jQuery('.update-type').val(type);
+                    jQuery('.update-kelas').val(kelas);
+                });
+
+                //fungsi button update data
+                jQuery('.btn-update').click(function() {
+                    //ajax update
+                    var id = jQuery('.update-id').val();
+                    var name = jQuery('update-name').val();
+                    var kelompok = jQuery('update-kelompok').val();
+                    var type = jQuery('update-type').val();
+                    var kelas = jQuery('update-kelas').val();
+
+                    //kirim permintaan pembaruan produk API
+                    jQuery.ajax({
+                        url: '{{ env('BASE_URL') }}api/master-mapel/update-data/' + id,
+                        type: "PUT",
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorizaion', 'Bearer ' + token);
+                        },
+                        data: {
+                            name: name,
+                            kelompok: kelompok,
+                            type: type,
+                            kelas: kelas,
+                        },
+                        success: function(response) {
+                            //show the modal
+                            jQuery('.update-sukses').text(response.message);
+                            Toastify({
+                                node: $("#success-update-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                
+                                duration: 3000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000); 
+                        },
+                        error: function(xhr, status, error) {
+                            //show the modal
+                            jQuery('.update-gagal').text(response.message);
+                            Toastify({
+                                node: $("#failed-update-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 5000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 5000);
+                        }
+                    });
+                });
+
+                //Fungsi tombol hapus
+                jQuery('#data-table').on('click', '.btn-delete', function() {
+                    var id = jQuery(this).attr("data-id");
+
+                    //show the modal
+                    const el = document.querySelector("#delete-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+
+                    jQuery('.btn-iya').click(function() {
+                        //ajax delete API
+                        jQuery.ajax({
+                            url: '{{ env('BASE_URL') }}api/master-mapel/hapus-data/' + id,
+                            type: 'DELETE',
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            },
+                            success: function(response) {
+                                //show the modal
+                                jQuery('.hapus-sukses').text(response.message);
+                                Toastify({
+                                    node: $("#success-hapus-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 3000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
+                            },
+                            error: function(xhr, status, error) {
+                                // Show the modal
+                                jQuery('.hapus-gagal').text(error);
+                                Toastify({
+                                    node: $("#failed-hapus-notification-content")
+                                        .clone()
+                                        .removeClass("hidden")[0],
+                                    duration: 5000,
+                                    newWindow: true,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    stopOnFocus: true,
+                                }).showToast();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 5000);
+                            }
+                        });
+                    });
+                });
+
+                // Fungsi button export
+                jQuery('.btn-export').click(function() {
+                    //akses URL export data
+                    var linkto = 'http:/127.0.0.1:8000/api/master-mapel/export-data';
+                    jQUery.ajax({
+                        xhrFields: {
+                            responseType: 'blob',
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        type: 'GET',
+                        url: linkto,
+                        success: function(result, status, xhr) {
+                            var disposition = xhr.getResponseHeader('content-disposition');
+                            var matches = /"([^"]*)"/.exec(disposition);
+                            var filename = (matches != null && matches[1] ? matches[1] : 'Export-Master-Mapel.xlsx');
+
+                            // The actual download
+                            var blob = new Blob([result], {
+                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                            });
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = filename;
+
+                            document.body.appendChild(link);
+
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    });
+                });
+
+                // Menampilkan modal export
+                jQuery('.modal-import').click(function() {
+                    //show the modal
+                    const el = document.querySelector("#header-import-footer-modal-preview");
+                    const modal = tailwind.Modal.getOrCreateInstance(el);
+                    modal.show();
+                });
+
+                // Fungsi button unduh
+                jQuery('.btn-unduh').click(function() {
+                    // Akses URL Export data
+                    var linkto = 'http://127.0.0.1:8000/api/master-mapel/download-template';
+                    jQuery.ajax({
+                        xhrFields: {
+                            responseType: 'blob',
+                        },
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        type: 'GET',
+                        url: linkto,
+                        success: function(result, status, xhr) {
+
+                            var disposition = xhr.getResponseHeader('content-disposition');
+                            var matches = /"([^"]*)"/.exec(disposition);
+                            var filename = (matches != null && matches[1] ? matches[1] : 'Template-Master-Mapel.xlsx');
+
+                            // The actual download
+                            var blob = new Blob([result], {
+                                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                            });
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = filename;
+
+                            document.body.appendChild(link);
+
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    });
+                });
+
+                // Fungsi button import
+                jQuery('.btn-import').click(function() {
+                    // get form data
+                    var inp = jQuery('#fileInput1')[0];
+                    var foto = inp.files[0];
+
+                    var formData = new FormData();
+                    formData.append('excel', foto);
+
+                    // Kirim permintaan pembaruan produk ke API
+                    jQuery.ajax({
+                        url: 'http://127.0.0.1:8000/api/master-mapel/import-data',
+                        type: 'POST',
+                        headers: {
+                            "Authorization": "Bearer " + token
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Show the modal
+                            jQuery('.import-sukses').text(response.message);
+                            Toastify({
+                                node: $("#success-import-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 3000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000); // 3000 milliseconds = 3 seconds
+                        },
+                        error: function(xhr, status, error) {
+                            // Show the modal
+                            jQuery('.import-gagal').text(error);
+                            Toastify({
+                                node: $("#failed-import-notification-content")
+                                    .clone()
+                                    .removeClass("hidden")[0],
+                                duration: 5000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                stopOnFocus: true,
+                            }).showToast();
+
+                            setTimeout(function() {
+                                // location.reload();
+                            }, 5000); // 3000 milliseconds = 3 seconds
+                        }
+                    });
+                })
+
                 function logout(name) {
                     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                     window.location.href = "{{ route('login') }}";
                 }
             });
+
         </script>
         <!-- END: JS Assets-->
     </body>

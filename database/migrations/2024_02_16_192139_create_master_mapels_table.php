@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('master_mapels', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('kelompok');
+            $table->string('type');
+            $table->string('kelas');
             $table->timestamps();
         });
     }

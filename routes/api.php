@@ -58,7 +58,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('master-mapel')->group(function() {
-        Route::post("/list", );
+        Route::post("/list", [MasterMapelController::class, 'listMapel']);
         Route::get("/data-support/role", [MasterMapelController::class, 'supportRole']);
+        Route::post("/tambah-data", [MasterMapelController::class, 'addMapel']);
+        Route::put("/update-data/{id}", [MasterMapelController::class, 'updateMapel']);
+        Route::delete("/delete-data/{id}", [MasterMapelController::class, 'deleteMapel']);
+        Route::get("/export-data", [MasterMapelController::class, 'exportData']);
+        Route::post("/import-data", [MasterMapelController::class, 'importData']);
+        Route::get("/download-template", [MasterMapelController::class, 'template']);
     });
 });

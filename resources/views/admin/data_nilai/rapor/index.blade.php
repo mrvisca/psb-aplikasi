@@ -381,6 +381,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         List Data Nilai Rapor Siswa
                     </h2>
                     <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                        <div class="lg:flex intro-y">
+                            <select class="form-select py-2 px-8 box w-full lg:w-auto mt-3 lg:mt-0 ml-auto filter-tajar">
+                                {{-- Data ada pada fecth data --}}
+                            </select>
+                        </div>
+                        &nbsp;&nbsp;
                         <div class="dropdown ml-auto sm:ml-0">
                             <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
@@ -550,11 +556,18 @@ License: You must have a valid license purchased only from themeforest(the above
                 }).then(response => response.json()).then(data => {
 
                     var select = jQuery('.tahun-ajar');
+                    var filter = jQuery('.filter-tajar');
 
                     // Iterasi melalui data dan membuat objek untuk setiap entri
                     jQuery.each(data, function(index, item) {
                         for (let i = 0; i < item.length; i++) {
-                            select.append('<option value="' + item[i].id + '">' + item[i].name + '</option>');
+                            select.append('<option value="' + item[i].id + '">' + item[i].name + ' (' + item[i].semester + ')</option>');
+                            if(i == 0)
+                            {
+                                filter.append('<option value="' + item[i].id + '" selected>' + item[i].name + ' (' + item[i].semester + ')</option>');
+                            }else{
+                                filter.append('<option value="' + item[i].id + '">' + item[i].name + ' (' + item[i].semester + ')</option>');
+                            }
                         }
                     });
 
@@ -563,7 +576,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 });
 
                 // Datatable list nilai rapor siswa
-                jQuery('#data-table').DataTable({
+                var dataTable = jQuery('#data-table').DataTable({
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
@@ -572,6 +585,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         "type": "POST",
                         "headers": {
                             'Authorization': 'Bearer ' + token
+                        },
+                        "data": function(d) {
+                            // Add your parameters here
+                            d.tahun_ajar = jQuery('.filter-tajar').val();
+                            // You can add more parameters as needed
                         }
                     },
                     "columns": [
@@ -585,11 +603,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             render: function (data, type, row) {
 
                                 // Create action buttons
-                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-user_name="' + data.user_name + '" data-nip="' + data.nip + '" data-jenkel="' + data.jenkel + '" data-role_name="' + data.role_name + '" data-jabatan="' + data.jabatan + '" data-status="' + data.status + '" data-telpon="' + data.telpon + '"><i data-feather="edit" class="w-4 h-4 mr-1"></i></button>';
-                                var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '"><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></button>';
+                                var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-user_name="' + data.user_name + '" data-nip="' + data.nip + '" data-jenkel="' + data.jenkel + '" data-role_name="' + data.role_name + '" data-jabatan="' + data.jabatan + '" data-status="' + data.status + '" data-telpon="' + data.telpon + '"><i data-feather="eye" class="w-4 h-4 mr-1"></i></button>';
 
                                 // Combine the buttons
-                                var actions = editBtn + ' || ' + deleteBtn;
+                                var actions = editBtn;
                                 return actions;
                             }
                         }
@@ -597,6 +614,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     "drawCallback": function(settings) {
                         feather.replace();
                     }
+                });
+
+                // Event listener untuk filter tahun ajaran
+                jQuery('.filter-tajar').change(function() {
+                    // Memperbarui data DataTable dengan filter baru
+                    dataTable.ajax.reload();
                 });
 
                 // Passing data list row ke dalam modal update
@@ -846,7 +869,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
-                        url: 'http://127.0.0.1:8000/api/master-guru/import-data',
+                        url: 'http://127.0.0.1:8000/api/data-nilai/rapor-siswa/import-data/import-xls',
                         type: 'POST',
                         headers: {
                             "Authorization": "Bearer " + token

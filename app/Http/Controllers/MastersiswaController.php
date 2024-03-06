@@ -85,6 +85,9 @@ class MastersiswaController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        // Tahun Akhir Siswa
+        $takhir = (int)$request->periode + 3;
+
         $siswa = new MasterSiswa();
         $siswa->nis = $request->nis;
         $siswa->name = $request->name;
@@ -93,6 +96,7 @@ class MastersiswaController extends Controller
         $siswa->jenkel = $request->jenkel;
         $siswa->telpon = $request->telpon;
         $siswa->periode = $request->periode;
+        $siswa->tahun_akhir = $takhir;
         $siswa->save();
 
         return response()->json([

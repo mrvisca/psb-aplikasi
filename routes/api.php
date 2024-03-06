@@ -84,9 +84,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post("/list", [RaporController::class, 'listRapor']);
             Route::get("/data-support/tajar", [RaporController::class, 'supportTajar']);
             Route::get("/export-data/export-xls", [RaporController::class, 'downloadTemplate']);
-            // Route::post("/tambah-data", [MastertajarController::class, 'tambahData']);
-            // Route::put("/update-data/{id}", [MastertajarController::class, 'updateData']);
-            // Route::delete("/hapus-data/{id}", [MastertajarController::class, 'hapus']);
+            Route::post("/import-data/import-xls", [RaporController::class, 'import']);
         });
     });
 

@@ -33,6 +33,8 @@ class MastersiswaImport implements ToCollection, WithHeadingRow
             $kelas = MasterJurusan::where('name','LIKE','%'.$row['kelas'].'%')->where('is_active',1)->first();
             if($kelas)
             {
+                $takhir = (int)$row['periode'] + 3;
+
                 $siswa = MasterSiswa::updateOrCreate([
                     'jurusan_id' => $kelas->id,
                     'name' => $row['name'],
@@ -45,6 +47,7 @@ class MastersiswaImport implements ToCollection, WithHeadingRow
                     'jenkel' => $row['jenkel'],
                     'telpon' => $row['telpon'],
                     'periode' => $row['periode'],
+                    'tahun_akhir' => $takhir,
                 ]);
             }
         }

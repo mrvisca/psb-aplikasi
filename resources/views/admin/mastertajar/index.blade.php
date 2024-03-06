@@ -654,7 +654,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     formData.append('kode', kode);
                     formData.append('name', name);
                     formData.append('tahun', tahun);
-                    formData.append('semster', semster);
+                    formData.append('semester', semester);
 
                     // Kirim permintaan pembaruan produk ke API
                     jQuery.ajax({
